@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<canvas id="matrixCanvas" width="500" height="400"></canvas>
+<script>
+    const canvas = document.getElementById("matrixCanvas");
+    const ctx = canvas.getContext("2d");
+
+    // Wymiary płótna
+    canvas.width = 500;
+    canvas.height = 400;
+
+    // Kolumny znaków (odstęp co 10 px)
+    const columns = canvas.width / 10;
+    const colVal = Array(Math.floor(columns)).fill(0); // tablica pozycji Y
+
+    // Główna funkcja rysująca
+    function draw() {
+        // Czarny prostokąt z lekką przezroczystością – pozwala na zanikanie starych znaków
+        ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = "#0f0"; // Zielony kolor znaków
+        ctx.font = "10px monospace";
+
+        colVal.forEach((y, i) => {
+            // Losowy znak: 0 lub 1
+            const text = Math.random() > 0.5 ? "1" : "0";
+            // Pozycja x w kolumnie
+            const x = i * 10;
+            //Rysujemy znak na płótnie
+            ctx.fillText(text, x, y);
+
+            // Losowy punkt zaniku
+            if (y > 200 + Math.random() * 400) {
+                colVal[i] = 0; // resetuj do góry
+            } else {
+                colVal[i] = y + 10; // przesuwaj znak w dół
+            }
+        });
+    }
+
+    // Animacja co 50 ms
+    setInterval(draw, 50);
+
+</script>
+
+</body>
+</html>
