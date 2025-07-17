@@ -2,57 +2,95 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Test</title>
-    <style>
-        canvas {
-            border: 1px solid black;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="pictures/sqareFavicon.svg" />
+    <title>Test Html5 Css3 JavaScript</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styleCSS.css">
 </head>
 <body>
-<canvas id="matrixCanvas" width="500" height="400"></canvas>
-<script>
-    const canvas = document.getElementById("matrixCanvas");
-    const ctx = canvas.getContext("2d");
+<nav class="topNav">
+    <img src="pictures/sqareFavicon.svg" alt="Logo" class="logoNav">
 
-    // Wymiary płótna
-    canvas.width = 500;
-    canvas.height = 400;
+    <div class="nav-menu-container">
+        <ul id="navMenu">
+            <li><a href="index.html">Start</a></li>
+            <li class="has-submenu">
+                <a href="#">Technologie <span class="arrow">&#x25BC;</span></a>
+                <ul class="submenu">
+                    <li><a href="javascriptExamples.html">JavaScript</a></li>
+                    <li><a href="html5Examples.html">Html 5</a></li>
+                    <li><a href="css3Examples.html">CSS 3</a></li>
+                </ul>
+            </li>
+            <li><a href="company.html">O firmie</a></li>
+            <li><a href="privacyPolicy.html">Polityka prywatności</a></li>
+            <li><a href="dataProtection.html">Ochrona danych</a></li>
+            <li><a href="contact.html">Kontakt</a></li>
+        </ul>
+    </div>
 
-    // Kolumny znaków (odstęp co 10 px)
-    const columns = canvas.width / 10;
-    const colVal = Array(Math.floor(columns)).fill(0); // tablica pozycji Y
-
-    // Główna funkcja rysująca
-    function draw() {
-        // Czarny prostokąt z lekką przezroczystością – pozwala na zanikanie starych znaków
-        ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        ctx.fillStyle = "#0f0"; // Zielony kolor znaków
-        ctx.font = "10px monospace";
-
-        colVal.forEach((y, i) => {
-            // Losowy znak: 0 lub 1
-            const text = Math.random() > 0.5 ? "1" : "0";
-            // Pozycja x w kolumnie
-            const x = i * 10;
-            //Rysujemy znak na płótnie
-            ctx.fillText(text, x, y);
-
-            // Losowy punkt zaniku
-            if (y > 200 + Math.random() * 400) {
-                colVal[i] = 0; // resetuj do góry
-            } else {
-                colVal[i] = y + 10; // przesuwaj znak w dół
-            }
-        });
-    }
-
-    // Animacja co 50 ms
-    setInterval(draw, 50);
-
-</script>
-
+    <button class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+</nav>
+<header>
+    <div class="slider-container">
+        <div class="slide">
+            <img src="pictures/slide1.jpg" alt="Slide 1">
+        </div>
+        <div class="slide">
+            <img src="pictures/slide2.jpg" alt="Slide 2">
+        </div>
+        <div class="slide">
+            <img src="pictures/slide3.jpg" alt="Slide 3">
+        </div>
+        <!-- Strzałki nawigacyjne -->
+        <button class="nav-arrow nav-arrow-left" id="prevBtn">&#8249;</button>
+        <button class="nav-arrow nav-arrow-right" id="nextBtn">&#8250;</button>
+    </div>
+</header>
+<main>
+    <h1>Main</h1>
+</main>
+<footer class="bottom-footer">
+    <div class="footer-columns-row">
+        <div class="footer-column-container">
+            <h4>Technologie</h4>
+            <ul>
+                <li><a href="javascriptExamples.html">JavaScript</a></li>
+                <li><a href="html5Examples.html">Html 5</a></li>
+                <li><a href="css3Examples.html">CSS 3</a></li>
+            </ul>
+        </div>
+        <div class="footer-column-container">
+            <h4>Informacje</h4>
+            <ul>
+                <li><a href="company.html">O firmie</a></li>
+                <li><a href="companyNews.html">Aktualności</a></li>
+                <li><a href="privacyPolicy.html">Polityka prywatności</a></li>
+                <li><a href="dataProtection.html">Ochrona danych</a></li>
+                <li><a href="contact.html">Kontakt</a></li>
+            </ul>
+        </div>
+        <div class="footer-column-container">
+            <h4>Adres</h4>
+            <p>ul. Poznańska 123<br>61-999 Poznań</p>
+            <h4>Telefon | E-mail:</h4>
+            <ul>
+                <li>tel: 999-999-999</li>
+                <li>email: <a href="mailto:biuro@firma.pl">e-mail: biuro@firma.pl</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-copyright-container">
+        <p>Copyright &copy; 2025 &#124; Created by PK</p>
+    </div>
+</footer>
+<script type="module" src="js/sliderJS.js"></script>
+<script type="module" src="js/commonJS.js"></script>
 </body>
 </html>
