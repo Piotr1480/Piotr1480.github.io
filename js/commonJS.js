@@ -11,11 +11,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // Zamknij menu po kliknięciu w link
     const navLinks = document.querySelectorAll('.topNav a');
     navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            hamburger.classList.remove('active');
-            navMenuContainer.classList.remove('active');
+        link.addEventListener('click', function(event) {
+            // Sprawdź, czy kliknięty link NIE jest linkiem "Technologie"
+            if (!link.closest('.has-submenu')) {
+                hamburger.classList.remove('active');
+                navMenuContainer.classList.remove('active');
+            } else {
+                // Jeśli to "Technologie", zapobiegamy domyślnemu przeładowaniu strony
+                event.preventDefault();
+            }
         });
     });
+
 
     // Zamknij menu po kliknięciu poza nim
     document.addEventListener('click', function(event) {
