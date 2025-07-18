@@ -231,6 +231,7 @@ body {
         transition: max-height 0.3s ease;
     }
 
+    .has-submenu:focus .submenu,
     .has-submenu:hover .submenu {
         max-height: 200px;
     }
