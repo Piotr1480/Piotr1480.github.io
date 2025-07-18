@@ -25,3 +25,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// Przycisk "Na początek strony"
+const backToTopBtn = document.getElementById('backToTop');
+
+// Pokazuj/ukrywaj przycisk na podstawie pozycji scrolla
+window.addEventListener('scroll', function() {
+    // Pokaż button gdy użytkownik przewinie więcej niż 300px
+    if (window.scrollY > 300) {
+        backToTopBtn.classList.add('show');
+    } else {
+        backToTopBtn.classList.remove('show');
+    }
+});
+
+// Płynny powrót na górę strony po kliknięciu
+backToTopBtn.addEventListener('click', function() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});

@@ -325,6 +325,183 @@ header {
 /* Koniec styl Header */
 
 /* Styl Main */
+/* Styl Main - 3 kolumny w 2 wierszach */
+main {
+    width: min(90%, 1200px);
+    margin: 40px auto;
+    padding: 20px 40px;
+}
+
+main h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 40px;
+    font-size: 2.5em;
+}
+
+/* Kontener dla całego layoutu */
+.main-content-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Kontener dla pojedynczego wiersza */
+.main-row {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+/* Pojedyncza kolumna */
+.main-column {
+    flex: 1;
+    max-width: 350px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.main-column:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Nagłówki kolumn */
+.main-column h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.4em;
+    border-bottom: 2px solid #56a8fc;
+    padding-bottom: 10px;
+}
+
+/* Tekst w kolumnach */
+.main-column p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* Button "Czytaj więcej" */
+.read-more-btn {
+    background-color: #56a8fc;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.read-more-btn:hover {
+    background-color: #d9dce1;
+    color: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(86, 168, 252, 0.3);
+}
+
+.read-more-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsywność dla tabletów */
+@media (max-width: 1024px) {
+    .main-row {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .main-column {
+        max-width: 300px;
+    }
+}
+
+/* Responsywność dla smartfonów */
+@media (max-width: 768px) {
+    main {
+        padding: 20px;
+    }
+
+    main h1 {
+        font-size: 2em;
+        margin-bottom: 30px;
+    }
+
+    .main-content-container {
+        gap: 20px;
+    }
+
+    .main-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .main-column {
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
+/* Button "Na początek strony" */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: #56a8fc;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background-color: #333;
+    color: #d9dce1;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(86, 168, 252, 0.3);
+}
+
+.back-to-top:active {
+    transform: translateY(0);
+}
+
+/* Responsywność dla buttonu */
+@media (max-width: 768px) {
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+}
 
 /* Koniec styl Main */
 
