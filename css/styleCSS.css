@@ -104,15 +104,23 @@ body {
     font-size: 0.7em;
     vertical-align: middle;
 }
+
 /* Domyślnie ▼ */
 .arrow::before {
-    content: "\25BC";
+    content: "\25BC"; /* ▼ */
     transition: transform 0.3s ease;
 }
 
-/* Po najechaniu na rodzica .has-submenu – zmiana na ▲ */
-.has-submenu:hover .arrow::before {
-    content: "\25B2";
+/* Po otwarciu submenu (kliknięcie – działa na mobile i desktop) */
+.has-submenu.open .arrow::before {
+    content: "\25B2"; /* ▲ */
+}
+
+/* Na desktopie: zmiana przy hover */
+@media (hover: hover) {
+    .has-submenu:hover .arrow::before {
+        content: "\25B2"; /* ▲ */
+    }
 }
 
 /* Submenu - ukryte domyślnie */
@@ -254,19 +262,22 @@ body {
     }
 
     .has-submenu.open .submenu {
-        max-height: 500px; /* Wystarczająco dużo, by pomieścić wszystkie elementy */
+        max-height: 500px;
     }
 
 
     /* Strzałka na mobile */
     .arrow {
-        transform: rotate(0deg);
+        display: inline-block;
+        margin-left: 5px;
         transition: transform 0.3s ease;
+        transform: rotate(0deg);
     }
 
-    .has-submenu:hover .arrow {
+    .has-submenu.open .arrow {
         transform: rotate(180deg);
     }
+
 }
 
 /* Koniec styl Nav */
