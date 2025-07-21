@@ -262,6 +262,10 @@ body {
         max-height: 500px;
     }
 
+    /* Kliknięcie (mobile i desktop) */
+    .has-submenu.open .arrow {
+        transform: rotate(180deg);
+    }
 
 }
 
