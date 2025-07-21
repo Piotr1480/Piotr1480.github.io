@@ -100,25 +100,26 @@ body {
 
 /* Strzałka ▼ przy "Technologie" */
 .arrow {
+    display: inline-block;
     margin-left: 5px;
     font-size: 0.7em;
     vertical-align: middle;
-}
-
-/* Domyślnie ▼ */
-.arrow::before {
-    content: "\25BC"; /* ▼ */
     transition: transform 0.3s ease;
+    transform: rotate(0deg); /* ▼ */
 }
 
+/* Obrót strzałki po kliknięciu – działa na mobile i desktop */
+.has-submenu.open .arrow {
+    transform: rotate(180deg); /* ▲ */
+}
 
-
-/* Na desktopie: zmiana przy hover */
+/* Dodatkowo: obrót strzałki przy hover (desktop tylko) */
 @media (hover: hover) {
-    .has-submenu:hover .arrow::before {
-        content: "\25B2"; /* ▲ */
+    .has-submenu:hover .arrow {
+        transform: rotate(180deg); /* ▲ */
     }
 }
+
 
 /* Submenu - ukryte domyślnie */
 .has-submenu {
@@ -263,21 +264,19 @@ body {
     }
 
 
-    /* Strzałka na mobile */
+    /* Strzałka na mobile ▼*/
     .arrow {
         display: inline-block;
         margin-left: 5px;
+        font-size: 0.7em;
+        vertical-align: middle;
         transition: transform 0.3s ease;
-        transform: rotate(0deg);
+        transform: rotate(0deg); /* ▼ */
     }
 
+    /* Obrót strzałki po kliknięciu – działa na mobile i desktop */
     .has-submenu.open .arrow {
-        transform: rotate(180deg);
-    }
-
-    /* Po otwarciu submenu (kliknięcie – działa na mobile i desktop) */
-    .has-submenu.open .arrow::before {
-        content: "\25B2"; /* ▲ */
+        transform: rotate(180deg); /* ▲ */
     }
 
 }
