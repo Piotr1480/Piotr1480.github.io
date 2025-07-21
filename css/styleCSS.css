@@ -104,6 +104,16 @@ body {
     font-size: 0.7em;
     vertical-align: middle;
 }
+/* Domyślnie ▼ */
+.arrow::before {
+    content: "\25BC";
+    transition: transform 0.3s ease;
+}
+
+/* Po najechaniu na rodzica .has-submenu – zmiana na ▲ */
+.has-submenu:hover .arrow::before {
+    content: "\25B2";
+}
 
 /* Submenu - ukryte domyślnie */
 .has-submenu {
@@ -231,8 +241,8 @@ body {
         transition: max-height 0.3s ease;
     }
 
-    .has-submenu:focus .submenu,
-    .has-submenu:hover .submenu {
+    .has-submenu:hover .submenu,
+    .has-submenu:active .submenu{
         max-height: 200px;
     }
 
