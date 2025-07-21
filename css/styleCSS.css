@@ -111,10 +111,7 @@ body {
     transition: transform 0.3s ease;
 }
 
-/* Po otwarciu submenu (kliknięcie – działa na mobile i desktop) */
-.has-submenu.open .arrow::before {
-    content: "\25B2"; /* ▲ */
-}
+
 
 /* Na desktopie: zmiana przy hover */
 @media (hover: hover) {
@@ -276,6 +273,11 @@ body {
 
     .has-submenu.open .arrow {
         transform: rotate(180deg);
+    }
+
+    /* Po otwarciu submenu (kliknięcie – działa na mobile i desktop) */
+    .has-submenu.open .arrow::before {
+        content: "\25B2"; /* ▲ */
     }
 
 }
