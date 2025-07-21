@@ -6,19 +6,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Toggle hamburger menu
     hamburger.addEventListener('click', function() {
-        const isActive = hamburger.classList.contains('active');
+        hamburger.classList.toggle('active');
+        navMenuContainer.classList.toggle('active');
 
-        if (isActive) {
-            // ZAMYKA: jeśli było otwarte, zamknij całe menu i submenu
-            hamburger.classList.remove('active');
-            navMenuContainer.classList.remove('active');
+        // Jeśli po kliknięciu menu NIE jest aktywne, to je zamykamy – razem z submenu
+        if (!navMenuContainer.classList.contains('active')) {
             submenuParent.classList.remove('open');
-        } else {
-            // OTWIERA: jeśli było zamknięte, otwórz tylko menu
-            hamburger.classList.add('active');
-            navMenuContainer.classList.add('active');
         }
     });
+
 
     // Rozwijanie submenu po kliknięciu "Technologie"
     const submenuToggle = submenuParent.querySelector('.submenu-toggle');
