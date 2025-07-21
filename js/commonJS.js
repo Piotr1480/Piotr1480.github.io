@@ -3,21 +3,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.getElementById('hamburger');
     const navMenuContainer = document.querySelector('.nav-menu-container');
     const submenuParent = document.querySelector('.has-submenu');
+    const submenuToggle = submenuParent.querySelector('.submenu-toggle');
 
     // Toggle hamburger menu
     hamburger.addEventListener('click', function() {
         hamburger.classList.toggle('active');
         navMenuContainer.classList.toggle('active');
 
-        // Jeśli po kliknięciu menu NIE jest aktywne, to je zamykamy – razem z submenu
+        // Jeśli menu zostało zamknięte, zamknij również submenu
         if (!navMenuContainer.classList.contains('active')) {
             submenuParent.classList.remove('open');
         }
     });
 
-
     // Rozwijanie submenu po kliknięciu "Technologie"
-    const submenuToggle = submenuParent.querySelector('.submenu-toggle');
     submenuToggle.addEventListener('click', function(e) {
         e.preventDefault();
         submenuParent.classList.toggle('open');
@@ -43,8 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-
-
 
 // Przycisk "Na początek strony"
 const backToTopBtn = document.getElementById('backToTop');
