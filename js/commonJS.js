@@ -6,8 +6,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Toggle hamburger menu
     hamburger.addEventListener('click', function() {
-        hamburger.classList.toggle('active');
-        navMenuContainer.classList.toggle('active');
+        const isActive = hamburger.classList.contains('active');
+
+        if (isActive) {
+            // ZAMYKA: jeśli było otwarte, zamknij całe menu i submenu
+            hamburger.classList.remove('active');
+            navMenuContainer.classList.remove('active');
+            submenuParent.classList.remove('open');
+        } else {
+            // OTWIERA: jeśli było zamknięte, otwórz tylko menu
+            hamburger.classList.add('active');
+            navMenuContainer.classList.add('active');
+        }
     });
 
     // Rozwijanie submenu po kliknięciu "Technologie"
@@ -37,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
 
 
 // Przycisk "Na początek strony"
