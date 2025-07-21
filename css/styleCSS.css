@@ -479,8 +479,8 @@ main h1 {
     transform: translateY(20px);
     transition: all 0.3s ease;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    -webkit-tap-highlight-color: transparent; /* ← to dodaj */
 }
-
 
 .back-to-top.show {
     opacity: 1;
@@ -496,14 +496,14 @@ main h1 {
 }
 
 .back-to-top:active {
+    background-color: #56a8fc;  /* reset koloru */
+    color: white;
     transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Responsywność dla buttonu */
 @media (max-width: 768px) {
     .back-to-top {
-        background-color: #56a8fc;
-        color: white;
         bottom: 20px;
         right: 20px;
         width: 45px;
