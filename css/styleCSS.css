@@ -223,9 +223,10 @@ body {
     }
 
     /* Submenu na mobile */
-    .has-submenu:hover > a {
-        background-color: #56a8fc;
-        color: whitesmoke;
+    .has-submenu > a {
+        cursor: pointer;
+        display: inline-block;
+        width: 100%;
     }
 
     .submenu {
@@ -241,20 +242,21 @@ body {
         transition: max-height 0.3s ease;
     }
 
-    .has-submenu:hover .submenu,
-    .has-submenu:active .submenu{
-        max-height: 200px;
+    /* Usuwamy zależność od :hover */
+    .has-submenu:hover > a {
+        background-color: inherit;
+        color: inherit;
     }
 
-    .submenu li a {
-        padding: 12px 40px;
-        border-bottom: 1px solid #e0e0e0;
-        background-color: #f8f8f8;
+    .has-submenu.open > a {
+        background-color: #56a8fc;
+        color: whitesmoke;
     }
 
-    .submenu li a:hover {
-        background-color: #88c2fd;
+    .has-submenu.open .submenu {
+        max-height: 500px; /* Wystarczająco dużo, by pomieścić wszystkie elementy */
     }
+
 
     /* Strzałka na mobile */
     .arrow {
