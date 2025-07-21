@@ -261,10 +261,6 @@ body {
         max-height: 500px;
     }
 
-    /* Kliknięcie (mobile i desktop) */
-    .has-submenu.open .arrow {
-        transform: rotate(180deg);
-    }
 
 }
 
@@ -506,6 +502,8 @@ main h1 {
 /* Responsywność dla buttonu */
 @media (max-width: 768px) {
     .back-to-top {
+        background-color: #56a8fc;
+        color: white;
         bottom: 20px;
         right: 20px;
         width: 45px;
