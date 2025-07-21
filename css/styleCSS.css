@@ -105,21 +105,20 @@ body {
     font-size: 0.7em;
     vertical-align: middle;
     transition: transform 0.3s ease;
-    transform: rotate(0deg); /* ▼ */
+    transform: rotate(0deg);
 }
 
-/* Obrót strzałki po kliknięciu – działa na mobile i desktop */
+/* Kliknięcie (mobile i desktop) */
 .has-submenu.open .arrow {
-    transform: rotate(180deg); /* ▲ */
+    transform: rotate(180deg);
 }
 
-/* Dodatkowo: obrót strzałki przy hover (desktop tylko) */
+/* Hover (desktop only) – tylko jeśli NIE MA klasy .open */
 @media (hover: hover) {
-    .has-submenu:hover .arrow {
-        transform: rotate(180deg); /* ▲ */
+    .has-submenu:not(.open):hover .arrow {
+        transform: rotate(180deg);
     }
 }
-
 
 /* Submenu - ukryte domyślnie */
 .has-submenu {
@@ -262,9 +261,6 @@ body {
     .has-submenu.open .submenu {
         max-height: 500px;
     }
-
-
-    /* Strzałka na mobile ▼*/
 
 
 }
