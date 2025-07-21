@@ -113,9 +113,8 @@ body {
     transform: rotate(180deg);
 }
 
-/* Hover (desktop only) – tylko jeśli NIE MA klasy .open */
 @media (hover: hover) {
-    .has-submenu:not(.open):hover .arrow {
+    .has-submenu:hover .arrow {
         transform: rotate(180deg);
     }
 }
