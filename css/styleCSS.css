@@ -632,6 +632,17 @@ main h1 {
 }
 /* Koniec styl Footer */
 
+/* Powrót do pierwotnego stylu dla urzadzeń mobilnych*/
+@media (hover: none) and (pointer: coarse) {
+    .back-to-top:hover {
+        background-color: #56a8fc;
+        color: white;
+        transform: translateY(0);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+}
+
+
 
 
 

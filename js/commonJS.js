@@ -20,10 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
     submenuToggle.addEventListener('click', function (e) {
         e.preventDefault();
 
-        // Zamykanie innych submenu – jeśli masz więcej niż jedno
-
         const isOpen = submenuParent.classList.contains('open');
-
         // Zamknij jeśli otwarte, otwórz jeśli zamknięte
         if (isOpen) {
             submenuParent.classList.remove('open');
@@ -74,6 +71,14 @@ backToTopBtn.addEventListener('click', function() {
         behavior: 'smooth'
     });
 });
+// Resetowanie stanu przycisku po zakończeniu animacji
+backToTopBtn.addEventListener('transitionend', function () {
+    // Po ukryciu przycisku usuń focus/active/hover
+    if (!backToTopBtn.classList.contains('show')) {
+        backToTopBtn.blur(); // usuwa "focus"
+    }
+});
+
 
 //Slick slider
 $(document).ready(function() {
