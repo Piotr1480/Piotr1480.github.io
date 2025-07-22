@@ -248,10 +248,10 @@ body {
         transition: max-height 0.3s ease;
     }
 
-    .has-submenu:hover > a {
-        background-color: #56a8fc;
-        color: whitesmoke;
-    }
+    /*.has-submenu:hover > a {*/
+    /*    background-color: #56a8fc;*/
+    /*    color: whitesmoke;*/
+    /*}*/
 
     /*.has-submenu:hover .submenu {*/
     /*    max-height: 200px;*/
