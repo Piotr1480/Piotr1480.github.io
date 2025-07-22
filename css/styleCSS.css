@@ -230,7 +230,7 @@ body {
     .has-submenu > a {
         cursor: pointer;
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
         align-items: center;
         width: 100%;
     }
@@ -266,7 +266,10 @@ body {
         max-height: 200px;
     }
 
-
+    /* Gdy submenu NIE jest otwarte (brak klasy .open i brak hover) */
+    .has-submenu:not(.open):not(:hover) .arrow {
+        transform: rotate(0deg);
+    }
 
 }
 
