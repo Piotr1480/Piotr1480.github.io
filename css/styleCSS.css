@@ -253,9 +253,9 @@ body {
         color: whitesmoke;
     }
 
-    .has-submenu:hover .submenu {
-        max-height: 200px;
-    }
+    /*.has-submenu:hover .submenu {*/
+    /*    max-height: 200px;*/
+    /*}*/
 
     .has-submenu.open > a {
         background-color: #56a8fc;
@@ -266,10 +266,11 @@ body {
         max-height: 200px;
     }
 
-    /* Kliknięcie (mobile i desktop) */
-    .has-submenu.open .arrow {
-        transform: rotate(180deg);
+    /* Gdy submenu NIE jest otwarte (brak klasy .open i brak hover) */
+    .has-submenu:not(.open):not(:hover) .arrow {
+        transform: rotate(0deg);
     }
+
 
 }
 
