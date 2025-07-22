@@ -229,7 +229,9 @@ body {
     /* Submenu na mobile */
     .has-submenu > a {
         cursor: pointer;
-        display: inline-block;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         width: 100%;
     }
 
@@ -246,10 +248,13 @@ body {
         transition: max-height 0.3s ease;
     }
 
-    /* Usuwamy zależność od :hover */
     .has-submenu:hover > a {
-        background-color: inherit;
-        color: inherit;
+        background-color: #56a8fc;
+        color: whitesmoke;
+    }
+
+    .has-submenu:hover .submenu {
+        max-height: 200px;
     }
 
     .has-submenu.open > a {
@@ -258,8 +263,9 @@ body {
     }
 
     .has-submenu.open .submenu {
-        max-height: 500px;
+        max-height: 200px;
     }
+
 
 
 }
