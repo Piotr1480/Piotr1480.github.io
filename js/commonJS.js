@@ -21,7 +21,15 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
 
         // Zamykanie innych submenu – jeśli masz więcej niż jedno
-        submenuParent.classList.toggle('open');
+
+        const isOpen = submenuParent.classList.contains('open');
+
+        // Zamknij jeśli otwarte, otwórz jeśli zamknięte
+        if (isOpen) {
+            submenuParent.classList.remove('open');
+        } else {
+            submenuParent.classList.add('open');
+        }
     });
 
     // Zamknięcie całego menu po kliknięciu w link (oprócz "Technologie")
