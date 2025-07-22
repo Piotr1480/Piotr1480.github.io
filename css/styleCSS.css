@@ -265,7 +265,11 @@ body {
     .has-submenu.open .submenu {
         max-height: 200px;
     }
-    
+
+    /* Kliknięcie (mobile i desktop) */
+    .has-submenu.open .arrow {
+        transform: rotate(180deg);
+    }
 
 }
 
