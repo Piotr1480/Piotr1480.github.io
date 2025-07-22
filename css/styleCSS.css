@@ -267,9 +267,9 @@ body {
     }
 
     /* Gdy submenu NIE jest otwarte (brak klasy .open i brak hover) */
-    .has-submenu:not(.open):not(:hover) .arrow {
-        transform: rotate(0deg);
-    }
+    /*.has-submenu:not(.open):not(:hover) .arrow {*/
+    /*    transform: rotate(0deg);*/
+    /*}*/
 
 
 }
