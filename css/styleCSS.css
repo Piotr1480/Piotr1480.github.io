@@ -265,15 +265,7 @@ body {
     .has-submenu.open .submenu {
         max-height: 200px;
     }
-
-    .has-submenu.open .arrow {
-        transform: rotate(180deg);
-    }
-
-    /* Gdy submenu NIE jest otwarte (brak klasy .open i brak hover) */
-    .has-submenu:not(.open):not(:hover) .arrow {
-        transform: rotate(0deg);
-    }
+    
 
 }
 
