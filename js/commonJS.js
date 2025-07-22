@@ -66,3 +66,18 @@ backToTopBtn.addEventListener('click', function() {
         behavior: 'smooth'
     });
 });
+
+//Slick slider
+$(document).ready(function() {
+    $('.slider-container').slick({
+        dots: true,
+        infinite: true,
+        speed: 800,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        arrows: true,
+        pauseOnHover: true,
+        prevArrow: $('.nav-arrow-left'),
+        nextArrow: $('.nav-arrow-right')
+    });
+});

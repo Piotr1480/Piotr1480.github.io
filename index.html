@@ -8,10 +8,16 @@
     <title>Test Html5 Css3 JavaScript</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/styleCSS.css">
+    <!-- jQuery -->
+    <script src="jQuery3.7.1/jquery-3.7.1.min.js"></script>
+    <!-- Slick CSS -->
+    <link rel="stylesheet" href="slick1.8.0/slick.css"/>
+    <link rel="stylesheet" href="slick1.8.0/slick-theme.css"/>
+
 </head>
 <body>
 <nav class="topNav">
-    <p style="margin-right: 3%;">v_10</p>
+    <p style="margin-right: 3%;">v_11</p>
     <img src="pictures/sqareFavicon.svg" alt="Logo" class="logoNav">
 
     <div class="nav-menu-container">
@@ -40,19 +46,19 @@
 </nav>
 <header>
     <div class="slider-container">
-        <div class="slide">
+        <div>
             <img src="pictures/slide1.jpg" alt="Slide 1">
         </div>
-        <div class="slide">
+        <div>
             <img src="pictures/slide2.jpg" alt="Slide 2">
         </div>
-        <div class="slide">
+        <div>
             <img src="pictures/slide3.jpg" alt="Slide 3">
         </div>
-        <!-- Strzałki nawigacyjne -->
-        <button class="nav-arrow nav-arrow-left" id="prevBtn">&#8249;</button>
-        <button class="nav-arrow nav-arrow-right" id="nextBtn">&#8250;</button>
     </div>
+    <!-- Strzałki nawigacji -->
+    <button class="nav-arrow nav-arrow-left">&#10094;</button>
+    <button class="nav-arrow nav-arrow-right">&#10095;</button>
 </header>
 <main>
 <h1>Główna zawartość</h1>
@@ -140,7 +146,8 @@
 <button class="back-to-top" id="backToTop" title="Wróć na górę">
     <span class="arrow-up">&#x25B2</span>
 </button>
-<script type="module" src="js/sliderJS.js"></script>
-<script type="module" src="js/commonJS.js"></script>
+<!-- Skrypty JavaScript -->
+<script src="slick1.8.0/slick.min.js"></script>
+<script src="js/commonJS.js"></script>
 </body>
 </html>
