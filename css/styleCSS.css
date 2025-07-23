@@ -481,9 +481,6 @@ main h1 {
 
 /* Button "Na początek strony" */
 .back-to-top {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: fixed;
     bottom: 30px;
     right: 30px;

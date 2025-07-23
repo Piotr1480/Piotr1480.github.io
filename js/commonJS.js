@@ -52,29 +52,36 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // Przycisk "Na początek strony"
-const backToTopBtn = document.getElementById('backToTop');
+let backToTopBtn = document.getElementById('backToTop');
 
-// Pokazuj/ukrywaj przycisk na podstawie pozycji scrolla
-window.addEventListener('scroll', function() {
-    // Pokaż button gdy użytkownik przewinie więcej niż 300px
-    if (window.scrollY > 300) {
-        backToTopBtn.classList.add('show');
-    } else {
-        backToTopBtn.classList.remove('show');
-        backToTopBtn.blur();
-    }
-});
-
-// Płynny powrót na górę strony po kliknięciu
-backToTopBtn.addEventListener('click', function() {
+function handleClick() {
     window.scrollTo({
         top: 0,
         behavior: 'smooth'
     });
-    backToTopBtn.blur();
+}
+
+backToTopBtn.addEventListener('click', handleClick);
+
+window.addEventListener('scroll', function () {
+    if (window.scrollY > 300) {
+        if (!backToTopBtn.classList.contains('show')) {
+            backToTopBtn.classList.add('show');
+        }
+    } else {
+        if (backToTopBtn.classList.contains('show')) {
+            backToTopBtn.classList.remove('show');
+
+            // ✅ Klonujemy przycisk, by zresetować focus/active
+            const clone = backToTopBtn.cloneNode(true);
+            backToTopBtn.parentNode.replaceChild(clone, backToTopBtn);
+
+            // ✅ Aktualizujemy referencję i podpinamy zdarzenie
+            backToTopBtn = clone;
+            backToTopBtn.addEventListener('click', handleClick);
+        }
+    }
 });
-
-
 
 //Slick slider
 $(document).ready(function() {
