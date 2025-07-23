@@ -516,20 +516,6 @@ main h1 {
     box-shadow: 0 6px 20px rgba(86, 168, 252, 0.3);
 }
 
-.back-to-top:active {
-    background-color: #56a8fc;
-    color: white;
-    transform: translateY(0);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.back-to-top.reset {
-    background-color: #56a8fc;
-    color: white;
-    transform: translateY(0);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
 .arrow-up {
     width: 24px;
     height: 24px;

@@ -59,10 +59,9 @@ window.addEventListener('scroll', function() {
     // Pokaż button gdy użytkownik przewinie więcej niż 300px
     if (window.scrollY > 300) {
         backToTopBtn.classList.add('show');
-        backToTopBtn.classList.remove('reset');
     } else {
         backToTopBtn.classList.remove('show');
-        backToTopBtn.classList.add('reset');
+        backToTopBtn.blur();
     }
 });
 
@@ -72,6 +71,7 @@ backToTopBtn.addEventListener('click', function() {
         top: 0,
         behavior: 'smooth'
     });
+    backToTopBtn.blur();
 });
 
 
