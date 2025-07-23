@@ -513,11 +513,13 @@ main h1 {
     box-shadow: 0 6px 20px rgba(86, 168, 252, 0.3);
 }
 
-.arrow-up {
-    width: 24px;
-    height: 24px;
-    stroke: currentColor;
-    pointer-events: none;
+.back-to-top.hidden:focus,
+.back-to-top.hidden:active {
+    background-color: #56a8fc !important;
+    color: white !important;
+    transform: translateY(0) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    outline: none !important;
 }
 
 @media (max-width: 768px) {

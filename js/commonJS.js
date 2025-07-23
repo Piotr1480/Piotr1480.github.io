@@ -52,36 +52,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // Przycisk "Na początek strony"
-let backToTopBtn = document.getElementById('backToTop');
+const backToTopBtn = document.getElementById('backToTop');
 
-function handleClick() {
+window.addEventListener('scroll', function () {
+    if (window.scrollY > 300) {
+        backToTopBtn.classList.add('show');
+        backToTopBtn.classList.remove('hidden');
+    } else {
+        backToTopBtn.classList.remove('show');
+        backToTopBtn.classList.add('hidden'); // 👈 Dodajemy klasę, która resetuje focus
+    }
+});
+
+// Kliknięcie przycisku
+backToTopBtn.addEventListener('click', function () {
     window.scrollTo({
         top: 0,
         behavior: 'smooth'
     });
-}
-
-backToTopBtn.addEventListener('click', handleClick);
-
-window.addEventListener('scroll', function () {
-    if (window.scrollY > 300) {
-        if (!backToTopBtn.classList.contains('show')) {
-            backToTopBtn.classList.add('show');
-        }
-    } else {
-        if (backToTopBtn.classList.contains('show')) {
-            backToTopBtn.classList.remove('show');
-
-            // ✅ Klonujemy przycisk, by zresetować focus/active
-            const clone = backToTopBtn.cloneNode(true);
-            backToTopBtn.parentNode.replaceChild(clone, backToTopBtn);
-
-            // ✅ Aktualizujemy referencję i podpinamy zdarzenie
-            backToTopBtn = clone;
-            backToTopBtn.addEventListener('click', handleClick);
-        }
-    }
 });
+
 
 //Slick slider
 $(document).ready(function() {
