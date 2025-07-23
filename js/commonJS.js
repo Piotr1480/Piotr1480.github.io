@@ -2,40 +2,55 @@
 document.addEventListener('DOMContentLoaded', function () {
     const hamburger = document.getElementById('hamburger');
     const navMenuContainer = document.querySelector('.nav-menu-container');
-    const submenuParent = document.querySelector('.has-submenu');
-    const submenuToggle = submenuParent.querySelector('.submenu-toggle');
+    const submenuParents = document.querySelectorAll('.has-submenu'); // Wszystkie submenu
+    const submenuToggles = document.querySelectorAll('.submenu-toggle'); // Wszystkie toggle'e
 
     // Kliknięcie w hamburger
     hamburger.addEventListener('click', function () {
         hamburger.classList.toggle('active');
         navMenuContainer.classList.toggle('active');
 
-        // Jeśli menu zostało zamknięte, zamknij też submenu i zresetuj strzałkę
+        // Jeśli menu zostało zamknięte, zamknij wszystkie submenu i zresetuj strzałki
         if (!navMenuContainer.classList.contains('active')) {
-            submenuParent.classList.remove('open');
+            submenuParents.forEach(parent => {
+                parent.classList.remove('open');
+            });
         }
     });
 
-    // Kliknięcie w "Technologie"
-    submenuToggle.addEventListener('click', function (e) {
-        e.preventDefault();
+    // Kliknięcie w każdy submenu toggle (Technologie, JavaScript)
+    submenuToggles.forEach((toggle, index) => {
+        toggle.addEventListener('click', function (e) {
+            e.preventDefault();
 
-        const isOpen = submenuParent.classList.contains('open');
-        // Zamknij jeśli otwarte, otwórz jeśli zamknięte
-        if (isOpen) {
-            submenuParent.classList.remove('open');
-        } else {
-            submenuParent.classList.add('open');
-        }
+            const parentSubmenu = submenuParents[index];
+            const isOpen = parentSubmenu.classList.contains('open');
+
+            // Zamknij wszystkie inne submenu
+            submenuParents.forEach((parent, i) => {
+                if (i !== index) {
+                    parent.classList.remove('open');
+                }
+            });
+
+            // Przełącz aktualnie kliknięte submenu
+            if (isOpen) {
+                parentSubmenu.classList.remove('open');
+            } else {
+                parentSubmenu.classList.add('open');
+            }
+        });
     });
 
-    // Zamknięcie całego menu po kliknięciu w link (oprócz "Technologie")
+    // Zamknięcie całego menu po kliknięciu w link (oprócz submenu toggles)
     const navLinks = document.querySelectorAll('.topNav a:not(.submenu-toggle)');
     navLinks.forEach(link => {
         link.addEventListener('click', function () {
             hamburger.classList.remove('active');
             navMenuContainer.classList.remove('active');
-            submenuParent.classList.remove('open');
+            submenuParents.forEach(parent => {
+                parent.classList.remove('open');
+            });
         });
     });
 
@@ -45,7 +60,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!isClickInsideMenu) {
             hamburger.classList.remove('active');
             navMenuContainer.classList.remove('active');
-            submenuParent.classList.remove('open');
+            submenuParents.forEach(parent => {
+                parent.classList.remove('open');
+            });
         }
     });
 });
