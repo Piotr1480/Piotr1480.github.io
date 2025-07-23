@@ -59,8 +59,10 @@ window.addEventListener('scroll', function() {
     // Pokaż button gdy użytkownik przewinie więcej niż 300px
     if (window.scrollY > 300) {
         backToTopBtn.classList.add('show');
+        backToTopBtn.classList.remove('reset');
     } else {
         backToTopBtn.classList.remove('show');
+        backToTopBtn.classList.add('reset');
     }
 });
 
@@ -70,13 +72,8 @@ backToTopBtn.addEventListener('click', function() {
         top: 0,
         behavior: 'smooth'
     });
-    // Zresetuj aktywny/focus stan po kliknięciu
-    backToTopBtn.blur(); // usuwa focus
-    setTimeout(() => {
-        backToTopBtn.classList.remove('show'); // jeśli ukrywasz ręcznie
-    }, 500); // dopasuj do długości scrollowania (w ms)
 });
-// Resetowanie stanu przycisku po zakończeniu animacji
+
 
 
 //Slick slider

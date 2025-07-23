@@ -481,6 +481,9 @@ main h1 {
 
 /* Button "Na początek strony" */
 .back-to-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: fixed;
     bottom: 30px;
     right: 30px;
@@ -498,7 +501,6 @@ main h1 {
     transform: translateY(20px);
     transition: all 0.3s ease;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    -webkit-tap-highlight-color: transparent;
 }
 
 .back-to-top.show {
@@ -508,8 +510,8 @@ main h1 {
 }
 
 .back-to-top:hover {
-    background-color: #333;
-    color: #d9dce1;
+    background-color: #d9dce1;
+    color: #333;
     transform: translateY(-5px);
     box-shadow: 0 6px 20px rgba(86, 168, 252, 0.3);
 }
@@ -521,6 +523,20 @@ main h1 {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
+.back-to-top.reset {
+    background-color: #56a8fc;
+    color: white;
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.arrow-up {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+    pointer-events: none;
+}
+
 @media (max-width: 768px) {
     .back-to-top {
         bottom: 20px;
@@ -529,6 +545,8 @@ main h1 {
         height: 45px;
         font-size: 1.3rem;
     }
+
+
 }
 
 /* Koniec styl Main */
@@ -632,15 +650,7 @@ main h1 {
 }
 /* Koniec styl Footer */
 
-/* Powrót do pierwotnego stylu dla urzadzeń mobilnych*/
-@media (hover: none) and (pointer: coarse) {
-    .back-to-top:hover {
-        background-color: #56a8fc;
-        color: white;
-        transform: translateY(0);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
-}
+
 
 
 
