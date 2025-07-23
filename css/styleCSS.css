@@ -479,7 +479,7 @@ main h1 {
     }
 }
 
-/* Button "Na początek strony" */
+/* Button "Na początek strony" - uniwersalna wersja */
 .back-to-top {
     position: fixed;
     bottom: 30px;
@@ -498,11 +498,33 @@ main h1 {
     transform: translateY(20px);
     transition: all 0.3s ease;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+    /* Usunięcie domyślnych stylów przycisku */
     padding: 0;
     margin: 0;
+
+    /* Centrowanie metodą text-align + line-height (uniwersalna) */
+    text-align: center;
+    line-height: 50px; /* równa wysokości przycisku */
+
+    /* Fallback dla flexbox - jeśli przeglądarka obsługuje */
+    display: -webkit-box;      /* Old webkit */
+    display: -moz-box;         /* Old Firefox */
+    display: -ms-flexbox;      /* IE 10 */
+    display: -webkit-flex;     /* New webkit */
+    display: flex;             /* Modern browsers */
+
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
 }
 
 .back-to-top.show {
@@ -511,17 +533,34 @@ main h1 {
     transform: translateY(0);
 }
 
+/* Strzałka - dodatkowe style dla lepszej kompatybilności */
 .arrow-up {
-    display: block;
+    display: inline-block;
     line-height: 1;
     font-weight: bold;
+    vertical-align: middle;
+
+    /* Fallback positioning jeśli flexbox nie działa */
+    position: relative;
+    top: -1px; /* Drobna korekta wizualna */
 }
 
+/* Hover effect z prefixami dla starszych przeglądarek */
 @media (hover: hover) and (pointer: fine) {
     .back-to-top:hover {
         background-color: #d9dce1;
         color: #333;
+
+        /* Transform z prefixami */
+        -webkit-transform: translateY(-5px);
+        -moz-transform: translateY(-5px);
+        -ms-transform: translateY(-5px);
+        -o-transform: translateY(-5px);
         transform: translateY(-5px);
+
+        /* Box-shadow z prefixami */
+        -webkit-box-shadow: 0 6px 20px rgba(86, 168, 252, 0.3);
+        -moz-box-shadow: 0 6px 20px rgba(86, 168, 252, 0.3);
         box-shadow: 0 6px 20px rgba(86, 168, 252, 0.3);
     }
 }
@@ -533,7 +572,20 @@ main h1 {
         width: 45px;
         height: 45px;
         font-size: 1.3rem;
+        line-height: 45px; /* Aktualizacja line-height dla mobile */
     }
+}
+
+/* Dodatkowy fallback dla bardzo starych przeglądarek (IE8 i starsze) */
+.back-to-top {
+    *text-align: center; /* IE7 hack */
+    *line-height: 50px;  /* IE7 hack */
+}
+
+/* Fallback dla przeglądarek nie obsługujących border-radius */
+.no-borderradius .back-to-top {
+    /* Można dodać alternatywny styl dla kwadratowego przycisku */
+    border-radius: 0;
 }
 
 
