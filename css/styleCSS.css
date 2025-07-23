@@ -506,20 +506,13 @@ main h1 {
     transform: translateY(0);
 }
 
-.back-to-top:hover {
-    background-color: #d9dce1;
-    color: #333;
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(86, 168, 252, 0.3);
-}
-
-.back-to-top.hidden:focus,
-.back-to-top.hidden:active {
-    background-color: #56a8fc;
-    color: white;
-    transform: translateY(0);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    outline: none;
+@media (hover: hover) and (pointer: fine) {
+    .back-to-top:hover {
+        background-color: #d9dce1;
+        color: #333;
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(86, 168, 252, 0.3);
+    }
 }
 
 @media (max-width: 768px) {
@@ -530,9 +523,8 @@ main h1 {
         height: 45px;
         font-size: 1.3rem;
     }
-
-
 }
+
 
 /* Koniec styl Main */
 

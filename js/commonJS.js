@@ -54,22 +54,24 @@ document.addEventListener('DOMContentLoaded', function () {
 // Przycisk "Na początek strony"
 const backToTopBtn = document.getElementById('backToTop');
 
-window.addEventListener('scroll', function () {
+// Pokazuj/ukrywaj przycisk na podstawie pozycji scrolla
+window.addEventListener('scroll', function() {
+    // Pokaż button gdy użytkownik przewinie więcej niż 300px
     if (window.scrollY > 300) {
         backToTopBtn.classList.add('show');
-        backToTopBtn.classList.remove('hidden');
     } else {
         backToTopBtn.classList.remove('show');
-        backToTopBtn.classList.add('hidden'); // 👈 Dodajemy klasę, która resetuje focus
+        backToTopBtn.blur();
     }
 });
 
-// Kliknięcie przycisku
-backToTopBtn.addEventListener('click', function () {
+// Płynny powrót na górę strony po kliknięciu
+backToTopBtn.addEventListener('click', function() {
     window.scrollTo({
         top: 0,
         behavior: 'smooth'
     });
+    backToTopBtn.blur();
 });
 
 
