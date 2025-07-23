@@ -515,11 +515,11 @@ main h1 {
 
 .back-to-top.hidden:focus,
 .back-to-top.hidden:active {
-    background-color: #56a8fc !important;
-    color: white !important;
-    transform: translateY(0) !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
-    outline: none !important;
+    background-color: #56a8fc;
+    color: white;
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    outline: none;
 }
 
 @media (max-width: 768px) {
