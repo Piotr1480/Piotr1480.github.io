@@ -550,17 +550,7 @@ main h1 {
     .back-to-top:hover {
         background-color: #d9dce1;
         color: #333;
-
-        /* Transform z prefixami */
-        -webkit-transform: translateY(-5px);
-        -moz-transform: translateY(-5px);
-        -ms-transform: translateY(-5px);
-        -o-transform: translateY(-5px);
         transform: translateY(-5px);
-
-        /* Box-shadow z prefixami */
-        -webkit-box-shadow: 0 6px 20px rgba(86, 168, 252, 0.3);
-        -moz-box-shadow: 0 6px 20px rgba(86, 168, 252, 0.3);
         box-shadow: 0 6px 20px rgba(86, 168, 252, 0.3);
     }
 }
