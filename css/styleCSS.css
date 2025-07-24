@@ -47,6 +47,14 @@ body {
     justify-content: flex-start;
 }
 
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+}
+
+
 /* Przycisk hamburger - ukryty domyślnie */
 .hamburger {
     display: none;
@@ -180,6 +188,36 @@ body {
 .submenu li a:hover {
     background-color: #88c2fd;
 }
+
+/* Styl button tryb ciemny/jasny */
+#themeToggle {
+    background-color: #56a8fc;
+    color: white;
+    border: none;
+    padding: 8px 10px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+}
+
+#themeToggle:hover {
+    background-color: #d9dce1;
+    color: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(86, 168, 252, 0.3);
+}
+
+#themeToggle:active {
+    transform: translateY(0);
+}
+
 
 /* Responsywność - urządzenia mobilne */
 @media (max-width: 1030px) {

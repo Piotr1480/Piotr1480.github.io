@@ -106,3 +106,24 @@ $(document).ready(function() {
         nextArrow: $('.nav-arrow-right')
     });
 });
+
+// Przełączanie trybu ciemnego/jasnego
+const toggleBtn = document.getElementById('themeToggle');
+const root = document.body;
+const darkThemeLink = document.getElementById('dark-theme-style');
+
+// Sprawdź zapisany tryb z localStorage
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+    root.classList.add('dark');
+    darkThemeLink.disabled = false;
+    toggleBtn.textContent = '☀️';
+}
+
+// Kliknięcie = zmiana trybu
+toggleBtn.addEventListener('click', () => {
+    const isDark = root.classList.toggle('dark');
+    darkThemeLink.disabled = !isDark;
+    toggleBtn.textContent = isDark ? '☀️' : '🌙';
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+});

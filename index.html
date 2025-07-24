@@ -18,6 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="pictures/sqareFavicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link id="dark-theme-style" rel="stylesheet" href="css/styleCSSDark.css" disabled>
     <link rel="stylesheet" href="css/styleCSS.css">
     <!-- jQuery -->
     <script src="jQuery3.7.1/jquery-3.7.1.min.js"></script>
@@ -29,7 +30,7 @@
 <body>
 <nav class="topNav">
     <div class="topNav-inner">
-        <p style="margin-right: 3%;">v_31</p>
+        <p style="margin-right: 3%;">v_32</p>
         <img src="pictures/sqareFavicon.svg" alt="Logo" class="logoNav">
 
         <div class="nav-menu-container">
@@ -58,11 +59,14 @@
             </ul>
         </div>
 
-        <button class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+        <div class="nav-actions">
+            <button id="themeToggle">🌙</button>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
     </div>
 </nav>
 <header>
