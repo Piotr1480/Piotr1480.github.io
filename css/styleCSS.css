@@ -16,15 +16,23 @@ body {
 /* Styl Nav */
 /* NAV - kontener */
 .topNav {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background-color: whitesmoke;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.topNav-inner {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     width: min(90%, 1920px);
     margin: 0 auto;
     padding: 20px 40px;
-    background-color: whitesmoke;
-    position: relative;
 }
+
 
 /* Logo */
 .logoNav {
@@ -175,9 +183,14 @@ body {
 
 /* Responsywność - urządzenia mobilne */
 @media (max-width: 1030px) {
-    .topNav {
+    .topNav-inner {
         padding: 15px 20px;
         width: 100%;
+    }
+
+    .logoNav {
+        height: 49px;
+        margin-left: 7%;
     }
 
     .logoNav {
