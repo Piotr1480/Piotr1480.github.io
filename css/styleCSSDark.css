@@ -54,3 +54,24 @@ body.dark .footer-column-container a {
 body.dark .footer-column-container a:hover {
     color: #56a8fc;
 }
+
+@media (max-width: 1030px) {
+    body.dark #navMenu > li > a {
+        color: #e0e0e0;
+    }
+
+    body.dark .submenu li a {
+        color: #e0e0e0;
+    }
+
+    body.dark .submenu li a:hover {
+        background-color: #333;
+        color: #fff;
+    }
+
+    body.dark .has-submenu.open > a {
+        background-color: #333;
+        color: #fff;
+    }
+}
+
