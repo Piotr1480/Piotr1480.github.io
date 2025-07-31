@@ -5,14 +5,14 @@
     <title>Html5 Css3 JavaScript</title>
 
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CMNR20S6J1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+<!--    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CMNR20S6J1"></script>-->
+<!--    <script>-->
+<!--        window.dataLayer = window.dataLayer || [];-->
+<!--        function gtag(){dataLayer.push(arguments);}-->
+<!--        gtag('js', new Date());-->
 
-        gtag('config', 'G-CMNR20S6J1');
-    </script>
+<!--        gtag('config', 'G-CMNR20S6J1');-->
+<!--    </script>-->
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif&display=swap" rel="stylesheet">
@@ -170,8 +170,89 @@
 <button class="back-to-top" id="backToTop" title="Wróć na górę">
     <span class="arrow-up">&#x25B2;</span>
 </button>
+<!-- Główny Modal Cookie -->
+<dialog id="cookieModal">
+    <div class="cookie-modal-overlay show">
+        <div class="cookie-modal">
+            <div class="cookie-modal-header">
+                <img src="pictures/sqareFavicon.svg" alt="Logo" class="logo-cookie-header">
+            </div>
+            <div class="cookie-modal-body">
+                <h4>Zgoda na pliki cookie i przetwarzanie danych</h4>
+                <br>
+                <p>Zanim klikniesz którykolwiek przycisk prosimy o przeczytanie do końca tej informacji – dotyczy ona Twoich danych osobowych. Na tej stronie internetowej używamy plików cookie lub podobnych funkcji do przetwarzania informacji o urządzeniach końcowych i danych osobowych (np. takich jak adresy IP lub informacje o przeglądarce).
+                    Przetwarzanie jest wykorzystywane w celach takich jak integracja treści, analiza/pomiar statystyczny. <b>Klikając „Przejdź do strony” udzielasz zgody na przetwarzanie Twoich danych osobowych</b> dotyczących Twojej aktywności w Internecie. <b>Zgoda jest dobrowolna. Możesz jej odmówić lub ograniczyć jej zakres klikając w „Ustawienia zaawansowane”.</b></p>
+                <div class="cookie-info-details">
+                    <details>
+                        <summary>Przechowywanie informacji na urządzeniach lub dostęp do nich</summary>
+                        <p>Pliki cookie, identyfikatory urządzeń lub podobne identyfikatory online (np. identyfikatory przypisywane losowo, identyfikatory sieciowe) w połączeniu z innymi informacjami (takimi jak rodzaj przeglądarki i informacje w niej zawarte, język, rozmiar ekranu, obsługiwane technologie itp.) mogą być przechowywane lub odczytywane na Twoim urządzeniu celem rozpoznania urządzenia za każdym razem, gdy następuje połączenie z aplikacją lub witryną internetową – w celach tutaj przedstawionych.</p>
+                    </details>
+                    <details>
+                        <summary>Badanie odbiorców (Google Analytics)</summary>
+                        <p>Twoja aktywność w ramach serwisu może zostać wykorzystana do utworzenia lub ulepszenia Twojego profilu odnośnie do treści. Raporty mogą być generowane w oparciu o aktywność Twoją i innych osób. Twoja aktywność w tym serwisie może pomóc w rozwoju i ulepszaniu produktów i usług. </p>
+                    </details>
+                </div>
+                <div class="cookie-modal-buttons">
+                    <button class="cookie-btn btn-accept" onclick="acceptCookies()">Przejdź do strony</button>
+                    <button class="cookie-btn btn-settings" onclick="showCookieSettings()">Ustawienia zaawansowane</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</dialog>
+
+<!-- Modal Ustawień Zaawansowanych -->
+<dialog id="cookieSettingsModal">
+    <div class="cookie-modal-overlay">
+        <div class="cookie-modal">
+            <div class="cookie-modal-header">
+                <img src="pictures/sqareFavicon.svg" alt="Logo" class="logo-cookie-header">
+                <h4>Ustawienia zaawansowane</h4>
+            </div>
+            <div class="cookie-modal-body">
+                <h4>Twoje preferencje</h4>
+                <br>
+                <p>Używamy plików cookie lub podobnych metod oraz danych osobowych w celu wyświetlania użytkownikowi odpowiednich treści i reklam. Przetwarzanie danych odbywa się częściowo na podstawie prawnie uzasadnionego interesu, częściowo na podstawie Twojej zgody. Tutaj masz możliwość skonfigurowania ustawień.</p>
+
+                <!-- Analytics cookie -->
+                <div class="cookie-settings-section">
+                    <details class="cookie-settings-details">
+                        <summary class="cookie-settings-summary">
+                            <span class="summary-title">Analityczne pliki cookie (Google Analytics)</span>
+                            <span class="summary-right">
+                            <label class="switch">
+                                <input type="checkbox" id="analyticsToggle" onchange="toggleAnalytics(this)">
+                                <span class="slider"></span>
+                            </label>
+                            <span class="arrow">&#10095;</span>
+                            </span>
+                        </summary>
+                        <div class="cookie-settings-content">
+                            <p>Te pliki cookie pomagają nam zrozumieć, jak odwiedzający korzystają z naszej strony, dzięki czemu możemy ją ulepszać. Zbieramy następujące informacje:</p>
+                            <ul>
+                                <li>Statystyki odwiedzin i najpopularniejsze strony</li>
+                                <li>Czas spędzony na stronie i współczynnik odrzuceń</li>
+                                <li>Źródła ruchu i słowa kluczowe</li>
+                                <li>Informacje o urządzeniu i przeglądarce (anonimowo)</li>
+                                <li>Wzorce nawigacji użytkowników</li>
+                            </ul>
+                            <p><strong>Dane są przetwarzane anonimowo</strong> i nie pozwalają na identyfikację konkretnych osób.</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="cookie-modal-buttons">
+                    <button class="cookie-btn btn-back" onclick="backToMainModal()">Wstecz</button>
+                    <button class="cookie-btn btn-save" onclick="saveCookieSettings()">Zapisz ustawienia</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</dialog>
+
 <!-- Skrypty JavaScript -->
 <script src="slick1.8.0/slick.min.js"></script>
 <script src="js/commonJS.js"></script>
+<script src="js/cookieModalJS.js"></script>
 </body>
 </html>
