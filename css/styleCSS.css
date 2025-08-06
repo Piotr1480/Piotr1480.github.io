@@ -1068,7 +1068,7 @@ main h1 {
     gap: 10px;
 }
 
-.arrow {
+.arrow-cookie {
     position: relative;
     font-size: 14px;
     color: #666;
@@ -1076,7 +1076,7 @@ main h1 {
     transform: rotate(90deg);
 }
 
-.cookie-settings-details[open] .arrow {
+.cookie-settings-details[open] .arrow-cookie {
     transform: rotate(270deg);
 }
 

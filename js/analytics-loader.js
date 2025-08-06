@@ -37,15 +37,11 @@
             gtag('js', new Date());
             gtag('config', 'G-CMNR20S6J1', {
                 'send_page_view': true,
+                'page_title': document.title,
+                'page_location': window.location.href,
+                'page_referrer': document.referrer,
                 'anonymize_ip': false, // Zmień na true jeśli potrzebujesz anonimizacji IP
                 'cookie_flags': 'SameSite=None;Secure' // Opcjonalnie dla HTTPS
-            });
-
-            // Automatyczne śledzenie obecnej strony
-            gtag('event', 'page_view', {
-                page_title: document.title,
-                page_location: window.location.href,
-                page_referrer: document.referrer
             });
 
             console.log('Google Analytics skonfigurowane dla strony:', document.title);

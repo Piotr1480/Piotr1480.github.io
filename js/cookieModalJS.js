@@ -189,14 +189,12 @@ function enableGoogleAnalytics() {
     gtag('js', new Date());
     gtag('config', 'G-CMNR20S6J1', {
         'send_page_view': true,
+        'page_title': document.title,
+        'page_location': window.location.href,
+        'page_referrer': document.referrer,
         'anonymize_ip': false
     });
 
-    // Śledzenie obecnej strony
-    gtag('event', 'page_view', {
-        page_title: document.title,
-        page_location: window.location.href
-    });
 }
 
 // Funkcja pomocnicza do wysyłania custom eventów (GA4)
@@ -238,7 +236,6 @@ function initializeCookieConsent() {
 // Inicjalizacja po załadowaniu strony
 document.addEventListener('DOMContentLoaded', function() {
     initializeCookieConsent();
-    checkGoogleAnalyticsStatus();
 });
 
 // Obsługa klawisza ESC
