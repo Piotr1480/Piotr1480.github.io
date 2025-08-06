@@ -15,6 +15,8 @@ function hasAnalyticsConsent() {
 
 // Pokazanie głównego modala cookie
 function showCookieModal() {
+    if (!mainModal) return;
+
     mainModal.classList.remove('hidden');
     const overlay = mainModal.querySelector('.cookie-modal-overlay');
     setTimeout(() => {
@@ -27,6 +29,8 @@ function showCookieModal() {
 
 // Ukrycie modala cookie z animacją
 function hideCookieModal() {
+    if (!mainModal) return;
+
     const overlay = mainModal.querySelector('.cookie-modal-overlay');
     overlay.classList.add('fade-out');
     setTimeout(() => {
@@ -38,6 +42,8 @@ function hideCookieModal() {
 
 // Pokazanie modala ustawień
 function showCookieSettings() {
+    if (!mainModal || !settingsModal) return;
+
     // Ukryj główny modal
     const mainOverlay = mainModal.querySelector('.cookie-modal-overlay');
     mainOverlay.classList.remove('show');
@@ -59,6 +65,8 @@ function showCookieSettings() {
 
 // Ukrycie modala ustawień
 function hideCookieSettings() {
+    if (!settingsModal) return;
+
     const overlay = settingsModal.querySelector('.cookie-modal-overlay');
     overlay.classList.add('fade-out');
     setTimeout(() => {
@@ -76,9 +84,18 @@ function backToMainModal() {
     }, 100);
 }
 
-// Załadowanie zapisanych ustawień
+// Załadowanie zapisanych ustawień z domyślną wartością true dla Analytics
 function loadSavedSettings() {
-    document.getElementById('analyticsToggle').checked = localStorage.getItem(COOKIE_ANALYTICS_KEY) === 'true';
+    const analyticsToggle = document.getElementById('analyticsToggle');
+    if (!analyticsToggle) return;
+
+    // Jeśli użytkownik wcześniej zapisał ustawienia, użyj ich
+    if (localStorage.getItem(COOKIE_ANALYTICS_KEY) !== null) {
+        analyticsToggle.checked = localStorage.getItem(COOKIE_ANALYTICS_KEY) === 'true';
+    } else {
+        // Jeśli nie ma zapisanych ustawień, ustaw domyślnie na true
+        analyticsToggle.checked = true;
+    }
 }
 
 // Przełączanie Analytics
@@ -88,13 +105,16 @@ function toggleAnalytics(checkbox) {
 
 // Zapisanie ustawień cookie
 function saveCookieSettings() {
-    const analyticsEnabled = document.getElementById('analyticsToggle').checked;
+    const analyticsToggle = document.getElementById('analyticsToggle');
+    if (!analyticsToggle) return;
+
+    const analyticsEnabled = analyticsToggle.checked;
 
     // Zapisz ustawienia
     localStorage.setItem(COOKIE_CONSENT_KEY, 'accepted');
     localStorage.setItem(COOKIE_ANALYTICS_KEY, analyticsEnabled.toString());
 
-    // Włącz odpowiednie skrypty
+    // Włącz GA jeśli użytkownik się zgodził
     if (analyticsEnabled) {
         enableGoogleAnalytics();
         trackCookieAccepted();
@@ -142,20 +162,40 @@ function toggleBodyScroll(disable) {
 // Google Analytics
 function enableGoogleAnalytics() {
     // Sprawdź czy gtag już nie jest załadowane
-    if (typeof gtag !== 'undefined') return;
+    if (typeof gtag !== 'undefined') {
+        console.log('Google Analytics już załadowane');
+        return;
+    }
+
+    console.log('Ładowanie Google Analytics...');
+
     // Dodaj Global Site Tag (gtag.js)
     const script = document.createElement('script');
     script.async = true;
     script.src = 'https://www.googletagmanager.com/gtag/js?id=G-CMNR20S6J1';
+    script.onload = function() {
+        console.log('Skrypt Google Analytics załadowany');
+    };
+    script.onerror = function() {
+        console.error('Błąd ładowania skryptu Google Analytics');
+    };
     document.head.appendChild(script);
+
     // Inicjalizuj gtag
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    window.gtag = gtag; // Udostępnij globalnie
+    window.gtag = gtag;
 
     gtag('js', new Date());
     gtag('config', 'G-CMNR20S6J1', {
-        //'anonymize_ip': true
+        'send_page_view': true,
+        'anonymize_ip': false
+    });
+
+    // Śledzenie obecnej strony
+    gtag('event', 'page_view', {
+        page_title: document.title,
+        page_location: window.location.href
     });
 }
 
@@ -172,18 +212,33 @@ function trackEvent(eventName, parameters = {}) {
 function trackCookieAccepted() {
     trackEvent('cookie_consent', {
         'consent_type': 'accepted',
-        'page_location': window.location.href
+        'page_location': window.location.href,
+        'page_title': document.title
     });
+}
+
+// Inicjalizacja systemu cookie consent
+function initializeCookieConsent() {
+    console.log('Inicjalizacja systemu cookie consent...');
+
+    // Jeśli użytkownik ma już zgodę na Analytics, załaduj GA
+    if (hasAnalyticsConsent()) {
+        console.log('Znaleziono zgodę na Analytics - ładowanie GA...');
+        enableGoogleAnalytics();
+    }
+
+    // Pokaż modal tylko jeśli nie ma żadnej zgody i modal istnieje na stronie
+    if (!hasAnyConsent() && mainModal) {
+        console.log('Brak zgody - pokazuję modal');
+        showCookieModal();
+        toggleBodyScroll(true);
+    }
 }
 
 // Inicjalizacja po załadowaniu strony
 document.addEventListener('DOMContentLoaded', function() {
-    if (!hasAnyConsent()) {
-        showCookieModal();
-        toggleBodyScroll(true);
-    } else if (hasAnalyticsConsent()) {
-        enableGoogleAnalytics();
-    }
+    initializeCookieConsent();
+    checkGoogleAnalyticsStatus();
 });
 
 // Obsługa klawisza ESC
@@ -198,4 +253,13 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
+// Funkcja do sprawdzania statusu (debugging)
+function checkGoogleAnalyticsStatus() {
+    console.log('=== STATUS GOOGLE ANALYTICS ===');
+    console.log('Zgoda na cookies:', hasAnyConsent());
+    console.log('Zgoda na Analytics:', hasAnalyticsConsent());
+    console.log('gtag załadowane:', typeof gtag !== 'undefined');
+    console.log('dataLayer elementy:', window.dataLayer ? window.dataLayer.length : 'brak dataLayer');
+    console.log('Aktualna strona:', window.location.href);
+}
 
