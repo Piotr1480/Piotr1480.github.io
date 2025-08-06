@@ -5,9 +5,12 @@ const mainModal = document.getElementById('cookieModal');
 const settingsModal = document.getElementById('cookieSettingsModal');
 
 // Sprawdzenie czy użytkownik już wyraził zgodę
-function checkCookieConsent() {
-    const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
-    return consent !== null;
+function hasAnyConsent() {
+    return localStorage.getItem(COOKIE_CONSENT_KEY) !== null;
+}
+
+function hasAnalyticsConsent() {
+    return localStorage.getItem(COOKIE_ANALYTICS_KEY) === 'true';
 }
 
 // Pokazanie głównego modala cookie
@@ -86,10 +89,9 @@ function toggleAnalytics(checkbox) {
 // Zapisanie ustawień cookie
 function saveCookieSettings() {
     const analyticsEnabled = document.getElementById('analyticsToggle').checked;
-    const preferencesEnabled = document.getElementById('preferencesToggle').checked;
 
     // Zapisz ustawienia
-    localStorage.setItem(COOKIE_CONSENT_KEY, 'custom');
+    localStorage.setItem(COOKIE_CONSENT_KEY, 'accepted');
     localStorage.setItem(COOKIE_ANALYTICS_KEY, analyticsEnabled.toString());
 
     // Włącz odpowiednie skrypty
@@ -99,8 +101,7 @@ function saveCookieSettings() {
     }
 
     console.log('Ustawienia zapisane:', {
-        analytics: analyticsEnabled,
-        preferences: preferencesEnabled
+        analytics: analyticsEnabled
     });
 
     hideCookieSettings();
@@ -177,16 +178,11 @@ function trackCookieAccepted() {
 
 // Inicjalizacja po załadowaniu strony
 document.addEventListener('DOMContentLoaded', function() {
-    if (!checkCookieConsent()) {
+    if (!hasAnyConsent()) {
         showCookieModal();
         toggleBodyScroll(true);
-    } else {
-        // Załaduj zapisane ustawienia jeśli już były
-        const analyticsEnabled = localStorage.getItem(COOKIE_ANALYTICS_KEY) === 'true';
-
-        if (analyticsEnabled) {
-            enableGoogleAnalytics();
-        }
+    } else if (hasAnalyticsConsent()) {
+        enableGoogleAnalytics();
     }
 });
 
