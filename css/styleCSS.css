@@ -964,9 +964,9 @@ main h1 {
     visibility: hidden;
 }
 
-.cookie-modal-overlay.fade-out .cookie-modal {
-    transform: scale(0.8) translateY(20px);
-}
+/*.cookie-modal-overlay.fade-out .cookie-modal {*/
+/*    !*transform: scale(0.8) translateY(20px);*!*/
+/*}*/
 
 /* Reset button for demo */
 .demo-controls {
