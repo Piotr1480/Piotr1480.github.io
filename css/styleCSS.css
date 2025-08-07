@@ -992,7 +992,7 @@ main h1 {
     .cookie-modal-body {
         max-height: 60vh; /* Ograniczenie wysokości do 60% wysokości okna */
         overflow-y: auto; /* Włączenie pionowego scrollowania */
-        padding: 20px; /* Zmniejszenie paddingu na małych ekranach */
+        padding: 20px 20px 80px 20px; /* Dodanie dolnego paddingu dla przycisków */
     }
 
     /* Opcjonalnie: dostosowanie całego modala na małych ekranach */
@@ -1000,13 +1000,23 @@ main h1 {
         max-height: 85vh; /* Ograniczenie całkowitej wysokości modala */
         margin: 10px; /* Dodanie marginesów */
     }
+
+    /* Zapewnienie, że przyciski pozostaną na dole */
+    .cookie-modal-buttons {
+        position: sticky;
+        bottom: 0;
+        background: white;
+        margin-top: -70px; /* Kompensacja za dolny padding body */
+        padding-top: 15px;
+        border-top: 1px solid #eee;
+    }
 }
 
 /* Dla bardzo małych ekranów (telefony) */
 @media screen and (max-width: 480px) {
     .cookie-modal-body {
         max-height: 50vh; /* Jeszcze mniejsza wysokość dla telefonów */
-        padding: 15px; /* Mniejszy padding */
+        padding: 15px 15px 80px 15px; /* Zachowanie dolnego paddingu */
         font-size: 11px; /* Opcjonalnie mniejsza czcionka */
     }
 
@@ -1016,6 +1026,11 @@ main h1 {
 
     .cookie-info-details {
         padding: 10px; /* Mniejszy padding w details */
+    }
+
+    .cookie-modal-buttons {
+        margin-top: -70px; /* Kompensacja za dolny padding */
+        padding: 15px 10px 25px;
     }
 }
 
