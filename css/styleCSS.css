@@ -841,7 +841,6 @@ main h1 {
     background: whitesmoke;
     padding: 15px;
     border-radius: 8px;
-    margin-bottom: 10px;
 }
 .cookie-info-details details {
     padding: 5px 0;
@@ -886,6 +885,7 @@ main h1 {
     gap: 12px;
     justify-content: center;
     flex-wrap: wrap;
+    padding: 0 15px 35px;
 }
 
 .cookie-btn {
@@ -985,6 +985,38 @@ main h1 {
 /* Ukrycie modali */
 .hidden {
     display: none;
+}
+
+/* Scrollowanie dla małych ekranów */
+@media screen and (max-width: 768px) {
+    .cookie-modal-body {
+        max-height: 60vh; /* Ograniczenie wysokości do 60% wysokości okna */
+        overflow-y: auto; /* Włączenie pionowego scrollowania */
+        padding: 20px; /* Zmniejszenie paddingu na małych ekranach */
+    }
+
+    /* Opcjonalnie: dostosowanie całego modala na małych ekranach */
+    .cookie-modal {
+        max-height: 85vh; /* Ograniczenie całkowitej wysokości modala */
+        margin: 10px; /* Dodanie marginesów */
+    }
+}
+
+/* Dla bardzo małych ekranów (telefony) */
+@media screen and (max-width: 480px) {
+    .cookie-modal-body {
+        max-height: 50vh; /* Jeszcze mniejsza wysokość dla telefonów */
+        padding: 15px; /* Mniejszy padding */
+        font-size: 11px; /* Opcjonalnie mniejsza czcionka */
+    }
+
+    .cookie-modal-body p {
+        font-size: 11px; /* Dostosowanie rozmiaru tekstu */
+    }
+
+    .cookie-info-details {
+        padding: 10px; /* Mniejszy padding w details */
+    }
 }
 
 /* Style dla ustawień zaawansowanych */
