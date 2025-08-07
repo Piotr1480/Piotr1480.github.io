@@ -885,15 +885,16 @@ main h1 {
 
 /* Przyciski modala */
 .cookie-modal-buttons {
+    position: sticky;
+    bottom: 0;
+    background: white;
+    padding: 15px;
+    border-top: 1px solid #eee;
     display: flex;
+    flex-wrap: wrap;
     gap: 12px;
     justify-content: center;
-    flex-wrap: wrap;
-    padding: 0 15px 35px;
-    border-top: 1px solid #eee;
-    background: white;
-    bottom: 0;
-    z-index: 10;
+    z-index: 1;
 }
 
 .cookie-btn {
@@ -998,9 +999,9 @@ main h1 {
 /* Scrollowanie dla małych ekranów */
 @media screen and (max-width: 768px) {
     .cookie-modal-body {
-        /*max-height: 60vh; !* Ograniczenie wysokości do 60% wysokości okna *!*/
+        max-height: 40vh; /* Ograniczenie wysokości do 60% wysokości okna */
         overflow-y: auto; /* Włączenie pionowego scrollowania */
-        padding: 20px 20px 80px 20px; /* Dodanie dolnego paddingu dla przycisków */
+        padding: 20px 20px 120px 20px; /* Dodanie dolnego paddingu dla przycisków */
     }
 
     /* Opcjonalnie: dostosowanie całego modala na małych ekranach */
@@ -1011,10 +1012,9 @@ main h1 {
 
     /* Zapewnienie, że przyciski pozostaną na dole */
     .cookie-modal-buttons {
-        /*position: sticky;*/
+        position: sticky;
         bottom: 0;
         background: white;
-        /*margin-top: -70px; !* Kompensacja za dolny padding body *!*/
         padding-top: 15px;
         border-top: 1px solid #eee;
     }
@@ -1023,8 +1023,8 @@ main h1 {
 /* Dla bardzo małych ekranów (telefony) */
 @media screen and (max-width: 480px) {
     .cookie-modal-body {
-        /*max-height: 50vh; !* Jeszcze mniejsza wysokość dla telefonów *!*/
-        padding: 15px 15px 80px 15px; /* Zachowanie dolnego paddingu */
+        max-height: 30vh; /* Jeszcze mniejsza wysokość dla telefonów */
+        padding: 15px 15px 120px 15px; /* Zachowanie dolnego paddingu */
         font-size: 11px; /* Opcjonalnie mniejsza czcionka */
     }
 
@@ -1037,7 +1037,6 @@ main h1 {
     }
 
     .cookie-modal-buttons {
-        margin-top: -70px; /* Kompensacja za dolny padding */
         padding: 15px 10px 25px;
     }
 }
