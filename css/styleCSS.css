@@ -781,6 +781,8 @@ main h1 {
     max-height: 90vh;
     border-radius: 12px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     transform: scale(0.8) translateY(20px);
     transition: all 0.3s ease;
@@ -821,6 +823,9 @@ main h1 {
 
 /* Zawartość modala */
 .cookie-modal-body {
+    flex-grow: 1;
+    overflow-y: auto;
+    max-height: 60vh;
     padding: 30px;
 }
 
@@ -886,6 +891,11 @@ main h1 {
     justify-content: center;
     flex-wrap: wrap;
     padding: 0 15px 35px;
+    border-top: 1px solid #eee;
+    background: white;
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
 }
 
 .cookie-btn {
