@@ -825,7 +825,6 @@ main h1 {
 .cookie-modal-body {
     flex-grow: 1;
     overflow-y: auto;
-    max-height: 60vh;
     padding: 30px;
 }
 
@@ -893,7 +892,6 @@ main h1 {
     padding: 0 15px 35px;
     border-top: 1px solid #eee;
     background: white;
-    position: sticky;
     bottom: 0;
     z-index: 10;
 }
@@ -1000,7 +998,7 @@ main h1 {
 /* Scrollowanie dla małych ekranów */
 @media screen and (max-width: 768px) {
     .cookie-modal-body {
-        max-height: 60vh; /* Ograniczenie wysokości do 60% wysokości okna */
+        /*max-height: 60vh; !* Ograniczenie wysokości do 60% wysokości okna *!*/
         overflow-y: auto; /* Włączenie pionowego scrollowania */
         padding: 20px 20px 80px 20px; /* Dodanie dolnego paddingu dla przycisków */
     }
@@ -1013,10 +1011,10 @@ main h1 {
 
     /* Zapewnienie, że przyciski pozostaną na dole */
     .cookie-modal-buttons {
-        position: sticky;
+        /*position: sticky;*/
         bottom: 0;
         background: white;
-        margin-top: -70px; /* Kompensacja za dolny padding body */
+        /*margin-top: -70px; !* Kompensacja za dolny padding body *!*/
         padding-top: 15px;
         border-top: 1px solid #eee;
     }
@@ -1025,7 +1023,7 @@ main h1 {
 /* Dla bardzo małych ekranów (telefony) */
 @media screen and (max-width: 480px) {
     .cookie-modal-body {
-        max-height: 50vh; /* Jeszcze mniejsza wysokość dla telefonów */
+        /*max-height: 50vh; !* Jeszcze mniejsza wysokość dla telefonów *!*/
         padding: 15px 15px 80px 15px; /* Zachowanie dolnego paddingu */
         font-size: 11px; /* Opcjonalnie mniejsza czcionka */
     }
