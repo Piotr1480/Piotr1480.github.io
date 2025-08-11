@@ -19,12 +19,10 @@ function showCookieModal() {
 
     mainModal.classList.remove('hidden');
     const overlay = mainModal.querySelector('.cookie-modal-overlay');
-    setTimeout(() => {
-        overlay.classList.add('show');
-        mainModal.showModal();
-        mainModal.setAttribute(`tabindex`, '-1'); // Ustawienie tabindex dla focus trap
-        mainModal.focus(); // Ustaw focus na modal
-    }, 100); // Krótkie opóźnienie po załadowaniu strony
+    overlay.classList.add('show');
+    mainModal.showModal();
+    mainModal.setAttribute(`tabindex`, '-1'); // Ustawienie tabindex dla focus trap
+    mainModal.focus(); // Ustaw focus na modal
 }
 
 // Ukrycie modala cookie z animacją
@@ -32,56 +30,113 @@ function hideCookieModal() {
     if (!mainModal) return;
 
     const overlay = mainModal.querySelector('.cookie-modal-overlay');
-    overlay.classList.add('fade-out');
-    setTimeout(() => {
-        overlay.classList.remove('show', 'fade-out');
-        mainModal.close();
-        mainModal.classList.add('hidden');
-    }, 100);
+    overlay.classList.remove('show', 'fade-out');
+    mainModal.close();
+    mainModal.classList.add('hidden');
 }
 
 // Pokazanie modala ustawień
-function showCookieSettings() {
+function showCookieSettings(openedFromLink = false) {
     if (!mainModal || !settingsModal) return;
 
-    // Ukryj główny modal
-    const mainOverlay = mainModal.querySelector('.cookie-modal-overlay');
-    mainOverlay.classList.remove('show');
+    // Zarządzaj przyciskami w zależności od źródła uruchomienia
+    manageModalButtons(openedFromLink);
 
     // Pokaż modal ustawień
     settingsModal.classList.remove('hidden');
     const settingsOverlay = settingsModal.querySelector('.cookie-modal-overlay');
 
-    // Załaduj zapisane ustawienia
-    loadSavedSettings();
+    // Ukryj główny modal tylko jeśli nie został uruchomiony z linku
+    if (!openedFromLink && typeof mainModal !== 'undefined' && mainModal) {
+        const mainOverlay = mainModal.querySelector('.cookie-modal-overlay');
+        if (mainOverlay) {
+            mainOverlay.classList.remove('show');
+        }
+        mainModal.close();
+        mainModal.classList.add('hidden');
+    } else if (openedFromLink) {
+        // Jeśli modal otwarty z linku, zablokuj przewijanie
+        toggleBodyScroll(true);
+    }
 
-    setTimeout(() => {
+    // Załaduj zapisane ustawienia
+    if (typeof loadSavedSettings === 'function') {
+        loadSavedSettings();
+    }
+
+    if (settingsOverlay) {
         settingsOverlay.classList.add('show');
-        settingsModal.showModal();
-        settingsModal.setAttribute('tabindex', '-1');
-        settingsModal.focus();
-    }, 100);
+    }
+    settingsModal.showModal();
+    settingsModal.setAttribute('tabindex', '-1');
+    settingsModal.focus();
 }
 
 // Ukrycie modala ustawień
 function hideCookieSettings() {
+    const settingsModal = document.getElementById('cookieSettingsModal');
     if (!settingsModal) return;
 
-    const overlay = settingsModal.querySelector('.cookie-modal-overlay');
-    overlay.classList.add('fade-out');
-    setTimeout(() => {
-        overlay.classList.remove('show', 'fade-out');
-        settingsModal.close();
-        settingsModal.classList.add('hidden');
-    }, 100);
+    const settingsOverlay = settingsModal.querySelector('.cookie-modal-overlay');
+    if (settingsOverlay) {
+        settingsOverlay.classList.remove('show', 'fade-out');
+    }
+    settingsModal.close();
+    settingsModal.classList.add('hidden');
+
+    // Usuń tabindex i przywróć normalny focus
+    settingsModal.removeAttribute('tabindex');
+
+    // Wyczyść focus i przywróć normalne zachowanie
+    document.body.focus();
+    document.body.blur();
+
+    // Odblokuj przewijanie strony
+    toggleBodyScroll(false);
 }
 
 // Powrót do głównego modala
 function backToMainModal() {
-    hideCookieSettings();
-    setTimeout(() => {
-        showCookieModal();
-    }, 100);
+    hideCookieSettings(); // zamyka modal ustawień
+    showCookieModal();    // otwiera główny modal
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const settingsLink = document.getElementById('cookie-settings-link');
+    if (settingsLink) {
+        settingsLink.addEventListener('click', (e) => {
+            e.preventDefault(); // zapobiega przeładowaniu strony
+            showCookieSettings(true); // uruchamia modal
+        });
+    }
+});
+
+// Funkcja do zarządzania przyciskami w oknie modalnym
+function manageModalButtons(isOpenedFromLink) {
+    const settingsModal = document.getElementById('cookieSettingsModal');
+    if (!settingsModal) return;
+
+    // Znajdź istniejące przyciski w modalu ustawień
+    const backButton = settingsModal.querySelector('.btn-back');
+    const closeButton = settingsModal.querySelector('.btn-close');
+
+    if (isOpenedFromLink) {
+        // Modal uruchomiony przez link - ukryj przycisk "Wstecz", pokaż przycisk "Wyjdź"
+        if (backButton) {
+            backButton.style.display = 'none';
+        }
+        if (closeButton) {
+            closeButton.style.display = 'inline-block';
+        }
+    } else {
+        // Modal uruchomiony przez inne okno modalne - pokaż przycisk "Wstecz", ukryj przycisk "Wyjdź"
+        if (backButton) {
+            backButton.style.display = 'inline-block';
+        }
+        if (closeButton) {
+            closeButton.style.display = 'none';
+        }
+    }
 }
 
 // Załadowanie zapisanych ustawień z domyślną wartością true dla Analytics
@@ -258,5 +313,24 @@ function checkGoogleAnalyticsStatus() {
     console.log('gtag załadowane:', typeof gtag !== 'undefined');
     console.log('dataLayer elementy:', window.dataLayer ? window.dataLayer.length : 'brak dataLayer');
     console.log('Aktualna strona:', window.location.href);
+}
+
+function debugHoverIssue() {
+    console.log('=== DEBUGGING HOVER ISSUE ===');
+    console.log('Body overflow:', document.body.style.overflow);
+    console.log('Body pointer-events:', document.body.style.pointerEvents);
+    console.log('Active element:', document.activeElement);
+    console.log('Body classes:', document.body.className);
+
+    // Sprawdź czy są niewidoczne overlaye
+    const allModals = document.querySelectorAll('dialog, .modal, [role="dialog"]');
+    allModals.forEach((modal, index) => {
+        console.log(`Modal ${index}:`, {
+            id: modal.id,
+            open: modal.hasAttribute('open'),
+            display: getComputedStyle(modal).display,
+            zIndex: getComputedStyle(modal).zIndex
+        });
+    });
 }
 

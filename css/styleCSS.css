@@ -958,6 +958,19 @@ main h1 {
     box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
 }
 
+.btn-close {
+    display: none;
+    background: #e74c3c;
+    color: white;
+}
+
+.btn-close:hover {
+    background: #c0392b;
+    color: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+}
+
 /* Animacja znikania */
 .cookie-modal-overlay.fade-out {
     opacity: 0;
