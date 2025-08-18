@@ -435,6 +435,13 @@ main h1 {
     font-size: 2.5em;
 }
 
+main h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 1.5em;
+}
+
 /* Kontener dla całego layoutu */
 .main-content-container {
     display: flex;
@@ -531,6 +538,11 @@ main h1 {
     main h1 {
         font-size: 2em;
         margin-bottom: 30px;
+    }
+
+    main h2 {
+        font-size: 1.2em;
+        margin-bottom: 20px;
     }
 
     .main-content-container {
@@ -1258,7 +1270,208 @@ input:checked + .slider:before {
 }
 /* Koniec styl cookie modal */
 
+/* Styl calcBMI */
+.calc-bmi-header {
+    background: #56a8fc;
+    padding: 30px;
+    border-radius: 10px;
+}
 
+.calc-bmi-header p {
+    text-align: center;
+    padding: 0 100px;
+}
+
+/* Kontener wagi i wzrostu w jednej linii */
+.calc-bmi-row-container {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+/* Pojedyncza kolumna (waga/wzrost) */
+.calc-bmi-weight-col-container,
+.calc-bmi-height-col-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 10px;
+}
+
+.calc-bmi-label-bold {
+    font-weight: bold;
+}
+
+/* Formularz */
+.calc-bmi-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Pola formularza */
+input[type="number"],
+button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+}
+
+/* Przycisk na dole wycentrowany */
+.calc-bmi-btn-calculate {
+    background-color: #0D47A1;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: center;
+    width: 200px;
+}
+
+.calc-bmi-btn-calculate:hover {
+    background-color: #1565C0;
+}
+
+.calc-bmi-result-interp{
+    display: none;
+    padding: 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: left;
+    background-color: #E3F2FD; /* Jasnoniebieski */
+    color: #0D47A1; /* Ciemnoniebieski */
+}
+
+/* BMI Wskaźnik */
+.bmi-container {
+    background: white;
+    padding: 50px 30px 30px 50px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.bmi-indicator {
+    position: relative;
+    margin: 30px 0;
+}
+
+.bmi-scale {
+    height: 40px;
+    border-radius: 20px;
+    background: linear-gradient(to right,
+    #00BCD4 0%, #00BCD4 15%,
+    #4CAF50 15%, #4CAF50 40%,
+    #8BC34A 40%, #8BC34A 55%,
+    #FF9800 55%, #FF9800 70%,
+    #FF5722 70%, #FF5722 85%,
+    #D32F2F 85%, #D32F2F 100%
+    );
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.bmi-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.bmi-label {
+    text-align: center;
+    flex: 1;
+    padding: 5px 2px;
+}
+
+.bmi-values {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #999;
+    margin-top: 3px;
+}
+
+.bmi-pointer {
+    position: absolute;
+    top: -15px;
+    transform: translateX(-50%);
+    transition: left 0.3s ease;
+}
+
+.bmi-triangle {
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 15px solid #333;
+}
+
+.bmi-value-display {
+    background: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.bmi-result {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.category-niedowaga { background-color: #E0F7FA; color: #00796B; }
+.category-prawidlowa { background-color: #E8F5E8; color: #2E7D32; }
+.category-nadwaga { background-color: #D4E1CB; color: #567825; }
+.category-otylosc1 { background-color: #FFE0B2; color: #E65100; }
+.category-otylosc2 { background-color: #FFCDD2; color: #C62828; }
+.category-otylosc3 { background-color: #FFCDD2; color: #B71C1C; }
+
+.legend {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.legend-color {
+    width: 20px;
+    height: 15px;
+    margin-right: 10px;
+    border-radius: 3px;
+}
+/* Koniec BMI Wskaźnik */
+
+/* Responsywność – na telefonach kolumny pod sobą */
+@media (max-width: 768px) {
+    .calc-bmi-header p {
+        padding: 0 20px;
+    }
+
+    .calc-bmi-row-container {
+        flex-direction: column;
+    }
+
+    .calc-bmi-btn-calculate {
+        width: 100%;
+    }
+}
+
+/* Koniec Styl calcBMI */
 
 
 

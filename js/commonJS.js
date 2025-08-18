@@ -1,129 +1,130 @@
-// Hamburger menu
+// Przełączanie trybu ciemnego/jasnego - natychmiastowe zastosowanie
+(function() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+        // Spróbuj znaleźć i włączyć ciemny motyw
+        const darkThemeLink = document.getElementById('dark-theme-style');
+        if (darkThemeLink) {
+            darkThemeLink.disabled = false;
+        }
+    }
+})();
+
+// Główny kod po załadowaniu DOM
 document.addEventListener('DOMContentLoaded', function () {
+
+    // === HAMBURGER MENU ===
     const hamburger = document.getElementById('hamburger');
     const navMenuContainer = document.querySelector('.nav-menu-container');
-    const submenuParents = document.querySelectorAll('.has-submenu'); // Wszystkie submenu
-    const submenuToggles = document.querySelectorAll('.submenu-toggle'); // Wszystkie toggle'e
+    const submenuParents = document.querySelectorAll('.has-submenu');
+    const submenuToggles = document.querySelectorAll('.submenu-toggle');
 
-    // Kliknięcie w hamburger
-    hamburger.addEventListener('click', function () {
-        hamburger.classList.toggle('active');
-        navMenuContainer.classList.toggle('active');
+    if (hamburger && navMenuContainer) {
+        // Kliknięcie w hamburger
+        hamburger.addEventListener('click', function () {
+            hamburger.classList.toggle('active');
+            navMenuContainer.classList.toggle('active');
 
-        // Jeśli menu zostało zamknięte, zamknij wszystkie submenu i zresetuj strzałki
-        if (!navMenuContainer.classList.contains('active')) {
-            submenuParents.forEach(parent => {
-                parent.classList.remove('open');
-            });
-        }
-    });
-
-    // Kliknięcie w każdy submenu toggle (Technologie, JavaScript)
-    submenuToggles.forEach((toggle, index) => {
-        toggle.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            const parentSubmenu = submenuParents[index];
-            const isOpen = parentSubmenu.classList.contains('open');
-
-            // Zamknij wszystkie inne submenu
-            submenuParents.forEach((parent, i) => {
-                if (i !== index) {
+            // Jeśli menu zostało zamknięte, zamknij wszystkie submenu
+            if (!navMenuContainer.classList.contains('active')) {
+                submenuParents.forEach(parent => {
                     parent.classList.remove('open');
-                }
-            });
-
-            // Przełącz aktualnie kliknięte submenu
-            if (isOpen) {
-                parentSubmenu.classList.remove('open');
-            } else {
-                parentSubmenu.classList.add('open');
+                });
             }
         });
-    });
 
-    // Zamknięcie całego menu po kliknięciu w link (oprócz submenu toggles)
-    const navLinks = document.querySelectorAll('.topNav a:not(.submenu-toggle)');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function () {
-            hamburger.classList.remove('active');
-            navMenuContainer.classList.remove('active');
-            submenuParents.forEach(parent => {
-                parent.classList.remove('open');
+        // Kliknięcie w każdy submenu toggle
+        submenuToggles.forEach((toggle, index) => {
+            toggle.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                if (submenuParents[index]) {
+                    const parentSubmenu = submenuParents[index];
+                    const isOpen = parentSubmenu.classList.contains('open');
+
+                    // Zamknij wszystkie inne submenu
+                    submenuParents.forEach((parent, i) => {
+                        if (i !== index) {
+                            parent.classList.remove('open');
+                        }
+                    });
+
+                    // Przełącz aktualnie kliknięte submenu
+                    if (isOpen) {
+                        parentSubmenu.classList.remove('open');
+                    } else {
+                        parentSubmenu.classList.add('open');
+                    }
+                }
             });
         });
-    });
 
-    // Kliknięcie poza menu – zamknięcie wszystkiego
-    document.addEventListener('click', function (event) {
-        const isClickInsideMenu = navMenuContainer.contains(event.target) || hamburger.contains(event.target);
-        if (!isClickInsideMenu) {
-            hamburger.classList.remove('active');
-            navMenuContainer.classList.remove('active');
-            submenuParents.forEach(parent => {
-                parent.classList.remove('open');
+        // Zamknięcie całego menu po kliknięciu w link (oprócz submenu toggles)
+        const navLinks = document.querySelectorAll('.topNav a:not(.submenu-toggle)');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                hamburger.classList.remove('active');
+                navMenuContainer.classList.remove('active');
+                submenuParents.forEach(parent => {
+                    parent.classList.remove('open');
+                });
             });
-        }
-    });
-});
+        });
 
-
-// Przycisk "Na początek strony"
-const backToTopBtn = document.getElementById('backToTop');
-
-// Pokazuj/ukrywaj przycisk na podstawie pozycji scrolla
-window.addEventListener('scroll', function() {
-    // Pokaż button gdy użytkownik przewinie więcej niż 300px
-    if (window.scrollY > 300) {
-        backToTopBtn.classList.add('show');
-    } else {
-        backToTopBtn.classList.remove('show');
-        backToTopBtn.blur();
+        // Kliknięcie poza menu – zamknięcie wszystkiego
+        document.addEventListener('click', function (event) {
+            const isClickInsideMenu = navMenuContainer.contains(event.target) || hamburger.contains(event.target);
+            if (!isClickInsideMenu) {
+                hamburger.classList.remove('active');
+                navMenuContainer.classList.remove('active');
+                submenuParents.forEach(parent => {
+                    parent.classList.remove('open');
+                });
+            }
+        });
     }
-});
 
-// Płynny powrót na górę strony po kliknięciu
-backToTopBtn.addEventListener('click', function() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-    backToTopBtn.blur();
-});
+    // === PRZEŁĄCZANIE TRYBU CIEMNEGO/JASNEGO ===
+    const toggleBtn = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    const darkThemeLink = document.getElementById('dark-theme-style');
 
+    if (toggleBtn && darkThemeLink) {
+        // Funkcja do ustawienia trybu
+        function setTheme(isDark) {
+            console.log('Ustawianie trybu:', isDark ? 'ciemny' : 'jasny');
 
-//Slick slider
-$(document).ready(function() {
-    $('.slider-container').slick({
-        dots: true,
-        infinite: true,
-        speed: 800,
-        autoplay: true,
-        autoplaySpeed: 4000,
-        arrows: true,
-        pauseOnHover: true,
-        prevArrow: $('.nav-arrow-left'),
-        nextArrow: $('.nav-arrow-right')
-    });
-});
+            if (isDark) {
+                root.classList.add('dark');
+                document.body.classList.add('dark');
+                darkThemeLink.disabled = false;
+                toggleBtn.textContent = '☀️';
+            } else {
+                root.classList.remove('dark');
+                document.body.classList.remove('dark');
+                darkThemeLink.disabled = true;
+                toggleBtn.textContent = '🌙';
+            }
+        }
 
-// Przełączanie trybu ciemnego/jasnego
-const toggleBtn = document.getElementById('themeToggle');
-const root = document.body;
-const darkThemeLink = document.getElementById('dark-theme-style');
+        // Sprawdź zapisany tryb z localStorage i zastosuj go
+        const savedTheme = localStorage.getItem('theme');
+        const isDarkMode = savedTheme === 'dark';
+        console.log('Zapisany motyw:', savedTheme);
+        setTheme(isDarkMode);
 
-// Sprawdź zapisany tryb z localStorage
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'dark') {
-    root.classList.add('dark');
-    darkThemeLink.disabled = false;
-    toggleBtn.textContent = '☀️';
-}
+        // Kliknięcie = zmiana trybu
+        toggleBtn.addEventListener('click', () => {
+            const currentlyDark = root.classList.contains('dark');
+            const newDarkState = !currentlyDark;
 
-// Kliknięcie = zmiana trybu
-toggleBtn.addEventListener('click', () => {
-    const isDark = root.classList.toggle('dark');
-    darkThemeLink.disabled = !isDark;
-    toggleBtn.textContent = isDark ? '☀️' : '🌙';
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            setTheme(newDarkState);
+            localStorage.setItem('theme', newDarkState ? 'dark' : 'light');
+        });
+    } else if (!toggleBtn) {
+        console.warn('Element themeToggle nie został znaleziony');
+    } else if (!darkThemeLink) {
+        console.warn('Element dark-theme-style nie został znaleziony');
+    }
 });

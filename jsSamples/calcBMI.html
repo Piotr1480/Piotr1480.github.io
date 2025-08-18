@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Kalkulator BMI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="../pictures/sqareFavicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/styleCSS.css">
+    <link id="dark-theme-style" rel="stylesheet" href="../css/styleCSSDark.css" disabled>
+    <!-- JS -->
+    <script src="../js/analytics-loader.js"></script>
+</head>
+<body>
+<nav class="topNav">
+    <div class="topNav-inner">
+        <p style="margin-right: 3%;">v_45</p>
+        <img src="../pictures/sqareFavicon.svg" alt="Logo" class="logoNav">
+
+        <div class="nav-menu-container">
+            <ul id="navMenu">
+                <li><a href="../index.html">Start</a></li>
+                <li class="has-submenu">
+                    <a href="#" class="submenu-toggle">Technologie <span class="arrow">&#x25BC;</span></a>
+                    <ul class="submenu">
+                        <li><a href="../technologies/javascripTech.html">JavaScript</a></li>
+                        <li><a href="../technologies/html5Tech.html">Html 5</a></li>
+                        <li><a href="../technologies/css3Tech.html">CSS 3</a></li>
+                        <li><a href="../technologies/jQueryTech.html">JQery</a></li>
+                    </ul>
+                </li>
+
+                <li class="has-submenu">
+                    <a href="#" class="submenu-toggle">JavaScript <span class="arrow">&#x25BC;</span></a>
+                    <ul class="submenu">
+                        <li><a href="../jsSamples/calcBMI.html">Kalkulator BMI</a></li>
+                        <li><a href="../jsSamples/jsSample2.html">Przykład 2</a></li>
+                        <li><a href="../jsSamples/jsSample3.html">Przykład 3</a></li>
+                    </ul>
+                </li>
+                <li><a href="../contact.html">Kontakt</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-actions">
+            <button id="themeToggle">🌙</button>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <div class="main-content-container">
+        <div class="calc-bmi-header">
+            <h2>Kalkulator BMI</h2>
+            <p>Wpisz dane do kalkulatora i wylicz swoje BMI. Pozwoli też oszacować zagrożenie chorobami związanymi z nadwagą i otyłością.</p>
+            <form id="bmiForm" class="calc-bmi-form">
+                <div class="calc-bmi-row-container">
+                    <div class="calc-bmi-weight-col-container">
+                        <label for="weight" class="calc-bmi-label-bold">Masa ciała (Kg):</label>
+                        <input type="number" min="0" max="250" step="0.1" oninput="validity.valid || (value='')" id="weight" name="weight" required>
+                    </div>
+                    <div class="calc-bmi-height-col-container">
+                        <label for="height" class="calc-bmi-label-bold">Wzrost (cm):</label>
+                        <input type="number" min="0" max="230" step="1" oninput="validity.valid || (value='')" id="height" name="height" required>
+                    </div>
+                </div>
+                <button type="button" id="calcBtn" class="calc-bmi-btn-calculate">Oblicz BMI</button>
+            </form>
+        </div>
+        <div class="calc-bmi-info-text">
+            <h3>Wskaźnik BMI</h3>
+            <br>
+            <p>BMI (ang. Body Mass Index) to wskaźnik proporcji wzrostu do wagi. Umożliwia sprawdzenie, czy nasza masa ciała jest optymalna i obliczenie odpowiedniej wartości kalorycznej diety. BMI nie zastępuje oceny lekarskiej i nie odróżnia masy mięśniowej od tłuszczowej. Pozwala również ocenić ryzyko wystąpienia takich chorób jak: cukrzyca typu 2, miażdżyca, choroba niedokrwienna serca, udar mózgu czy nowotwory.</p>
+        </div>
+
+        <div class="calc-bmi-result-interp" id="calc-bmi-result-interp"></div>
+
+        <div class="bmi-container">
+            <div class="bmi-indicator">
+                <div class="bmi-scale">
+                    <div class="bmi-pointer" id="bmiPointer">
+                        <div class="bmi-value-display" id="bmiValue">BMI: --</div>
+                        <div class="bmi-triangle"></div>
+                    </div>
+                </div>
+
+                <div class="bmi-labels">
+                    <div class="bmi-label">Niedowaga</div>
+                    <div class="bmi-label">Waga prawidłowa</div>
+                    <div class="bmi-label">Nadwaga</div>
+                    <div class="bmi-label">Otyłość I stopnia</div>
+                    <div class="bmi-label">Otyłość II stopnia</div>
+                    <div class="bmi-label">Otyłość III stopnia</div>
+                </div>
+
+                <div class="bmi-values">
+                    <span>&lt;18.5</span>
+                    <span>18.5-24.9</span>
+                    <span>25.0-29.9</span>
+                    <span>30.0-34.9</span>
+                    <span>35.0-39.9</span>
+                    <span>&ge;40.0</span>
+                </div>
+            </div>
+
+            <div id="bmiResult" class="bmi-result" style="display: none;"></div>
+
+            <div class="legend">
+                <h3>Legenda kategorii BMI:</h3>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #00BCD4;"></div>
+                    <span><strong>Niedowaga:</strong> poniżej 18,5 kg/m²</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #4CAF50;"></div>
+                    <span><strong>Waga prawidłowa:</strong> 18,5 – 24,9 kg/m²</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #8BC34A;"></div>
+                    <span><strong>Nadwaga:</strong> 25,0 – 29,9 kg/m²</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #FF9800;"></div>
+                    <span><strong>Otyłość I stopnia:</strong> 30,0 – 34,9 kg/m²</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #FF5722;"></div>
+                    <span><strong>Otyłość II stopnia:</strong> 35,0 – 39,9 kg/m²</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #D32F2F;"></div>
+                    <span><strong>Otyłość III stopnia:</strong> 40,0 i więcej kg/m²</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</main>
+<footer class="bottom-footer">
+    <div class="footer-columns-row">
+        <div class="footer-column-container">
+            <h4>Technologie</h4>
+            <ul>
+                <li><a href="technologies/javascripTech.html">JavaScript</a></li>
+                <li><a href="technologies/html5Tech.html">Html 5</a></li>
+                <li><a href="technologies/css3Tech.html">CSS 3</a></li>
+                <li><a href="technologies/jQueryTech.html">JQery</a></li>
+            </ul>
+        </div>
+        <div class="footer-column-container">
+            <h4>Informacje</h4>
+            <ul>
+                <li><a href="privacyPolicy.html">Polityka prywatności</a></li>
+                <li><a href="dataProtection.html">Ochrona danych</a></li>
+                <li><a href="#" id="cookie-settings-link">Ustawienia preferencji</a></li>
+                <li><a href="contact.html">Kontakt</a></li>
+            </ul>
+        </div>
+        <div class="footer-column-container">
+            <h4>Adres</h4>
+            <p>ul. Poznańska 123<br>61-999 Poznań</p>
+            <h4>Telefon | E-mail:</h4>
+            <ul>
+                <li>tel: 999-999-999</li>
+                <li>email: <a href="mailto:biuro@firma.pl">e-mail: biuro@firma.pl</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-copyright-container">
+        <p>Copyright &copy; 2025 &#124; Created by PK</p>
+    </div>
+</footer>
+<!-- Skrypty JavaScript -->
+<script src="../js/commonJS.js"></script>
+<script src="../js/calc-bmi.js"></script>
+</body>
+</html>
