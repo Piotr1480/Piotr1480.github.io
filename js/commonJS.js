@@ -3,10 +3,17 @@
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
         document.documentElement.classList.add('dark');
-        // Spróbuj znaleźć i włączyć ciemny motyw
+        document.body.classList.add('dark');
+
         const darkThemeLink = document.getElementById('dark-theme-style');
         if (darkThemeLink) {
             darkThemeLink.disabled = false;
+        }
+
+        // Jeśli przycisk istnieje, dodajemy klasę active
+        const toggleSwitch = document.querySelector('.toggle-switch');
+        if (toggleSwitch) {
+            toggleSwitch.classList.add('active');
         }
     }
 })();
@@ -83,48 +90,51 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             }
         });
+
+        // Ustawienie aktualnego roku w stopce
+        setCurrentYearFooter();
     }
 
     // === PRZEŁĄCZANIE TRYBU CIEMNEGO/JASNEGO ===
-    const toggleBtn = document.getElementById('themeToggle');
+    const toggleBtn = document.querySelector('.theme-toggle');
+    const toggleSwitch = document.querySelector('.toggle-switch');
     const root = document.documentElement;
     const darkThemeLink = document.getElementById('dark-theme-style');
 
-    if (toggleBtn && darkThemeLink) {
-        // Funkcja do ustawienia trybu
-        function setTheme(isDark) {
-            console.log('Ustawianie trybu:', isDark ? 'ciemny' : 'jasny');
-
-            if (isDark) {
-                root.classList.add('dark');
-                document.body.classList.add('dark');
-                darkThemeLink.disabled = false;
-                toggleBtn.textContent = '☀️';
-            } else {
-                root.classList.remove('dark');
-                document.body.classList.remove('dark');
-                darkThemeLink.disabled = true;
-                toggleBtn.textContent = '🌙';
-            }
-        }
-
-        // Sprawdź zapisany tryb z localStorage i zastosuj go
-        const savedTheme = localStorage.getItem('theme');
-        const isDarkMode = savedTheme === 'dark';
-        console.log('Zapisany motyw:', savedTheme);
-        setTheme(isDarkMode);
-
-        // Kliknięcie = zmiana trybu
-        toggleBtn.addEventListener('click', () => {
-            const currentlyDark = root.classList.contains('dark');
-            const newDarkState = !currentlyDark;
-
-            setTheme(newDarkState);
-            localStorage.setItem('theme', newDarkState ? 'dark' : 'light');
-        });
-    } else if (!toggleBtn) {
-        console.warn('Element themeToggle nie został znaleziony');
-    } else if (!darkThemeLink) {
-        console.warn('Element dark-theme-style nie został znaleziony');
+    if (!toggleBtn) {
+        console.warn('Element .theme-toggle nie został znaleziony');
+        return;
     }
+    if (!darkThemeLink) {
+        console.warn('Element #dark-theme-style nie został znaleziony');
+        return;
+    }
+
+    function setTheme(isDark) {
+        console.log('Ustawianie trybu:', isDark ? 'ciemny' : 'jasny');
+
+        root.classList.toggle('dark', isDark);
+        document.body.classList.toggle('dark', isDark);
+        darkThemeLink.disabled = !isDark;
+        toggleSwitch.classList.toggle('active', isDark);
+    }
+
+    // Ustaw motyw przy pierwszym załadowaniu
+    const savedTheme = localStorage.getItem('theme');
+    setTheme(savedTheme === 'dark');
+
+    // Obsługa kliknięcia
+    toggleBtn.addEventListener('click', () => {
+        const newDarkState = !root.classList.contains('dark');
+        setTheme(newDarkState);
+        localStorage.setItem('theme', newDarkState ? 'dark' : 'light');
+    });
+
 });
+
+function setCurrentYearFooter() {
+    const yearSpan = document.getElementById('year-footer');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear().toString();
+    }
+}

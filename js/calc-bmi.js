@@ -179,3 +179,5 @@ document.getElementById('calcBtn').addEventListener('click', () => {
     `;
     resultDiv.style.display = 'block';
 });
+
+

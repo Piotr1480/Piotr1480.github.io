@@ -7,6 +7,14 @@
     box-sizing: border-box;
 }
 
+:root {
+    --bg: #fff;
+    --text: #333;
+    --toggle-bg: #ddd;
+    --toggle-active: #333;
+    --thumb: #fff;
+}
+
 body {
     background-color: whitesmoke;
     font-family: -apple-system,BlinkMacSystemFont,Arial,Verdana,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif;
@@ -153,7 +161,7 @@ body {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     list-style: none;
     width: 100%;
-    min-width: 150px;
+    min-width: 170px;
     z-index: 10;
     opacity: 0;
     visibility: hidden;
@@ -190,32 +198,56 @@ body {
 }
 
 /* Styl button tryb ciemny/jasny */
-#themeToggle {
-    background-color: #56a8fc;
-    color: white;
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: none;
     border: none;
-    padding: 8px 10px;
-    font-size: 0.9em;
-    font-weight: 600;
     cursor: pointer;
-    border-radius: 25px;
+    font-size: 16px;
+    color: var(--text);
+}
+
+.toggle-switch {
+    width: 50px;
+    height: 26px;
+    background: var(--toggle-bg);
+    border-radius: 20px;
+    position: relative;
     transition: all 0.3s ease;
-    margin-left: 15px;
+}
+
+.toggle-switch.active {
+    background: var(--toggle-active);
+}
+
+.toggle-thumb {
+    width: 22px;
+    height: 22px;
+    background: var(--thumb);
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 42px;
+    font-size: 14px;
 }
 
-#themeToggle:hover {
-    background-color: #d9dce1;
-    color: #333;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(86, 168, 252, 0.3);
+.toggle-switch.active .toggle-thumb {
+    transform: translateX(24px);
 }
 
-#themeToggle:active {
-    transform: translateY(0);
+/* Ikony */
+.toggle-thumb::before {
+    content: "🌙";
+}
+
+.toggle-switch.active .toggle-thumb::before {
+    content: "☀️";
 }
 
 
@@ -1472,6 +1504,111 @@ button {
 }
 
 /* Koniec Styl calcBMI */
+
+/* Styl Weather Forecast */
+/* Układ bazowy (desktop) */
+.weather-form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.weather-row-container{
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.weather-form-row{
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    gap: 10px;
+    align-items: center;
+}
+
+.weather-form-row label{
+    font-weight: bold;
+    color: #333;
+}
+
+.weather-form-row input,
+.weather-form-row select{
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 90%;
+}
+
+.weather-btn-getweather{
+    background-color: #56a8fc;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: center;
+    width: 200px;
+}
+
+.weather-btn-getweather:hover {
+    background-color: #8e8e93;
+    color: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(86, 168, 252, 0.3);
+}
+
+#weather {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    background: #B9DBFE;
+}
+#icon { width: 80px; height: 80px; }
+#forecast { margin-top: 20px; text-align: left; }
+#forecast h2 { margin-bottom: 20px; }
+.day {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    background: #B9DBFE;
+}
+canvas { margin-top: 20px; }
+
+.weather-figcaption{
+    text-align: center;
+}
+
+/* Responsywność – na telefonach kolumny pod sobą */
+@media (max-width: 768px) {
+    .weather-row-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .weather-form-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .weather-form-row input,
+    .weather-form-row select {
+        width: 100%;
+    }
+
+    .weather-btn-getweather{
+        width: 100%;
+    }
+}
+
+
+/* Koniec Styl Weather Forecast */
 
 
 

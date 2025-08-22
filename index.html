@@ -6,7 +6,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="pictures/sqareFavicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="pictures/squareFavicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/styleCSS.css">
     <link id="dark-theme-style" rel="stylesheet" href="css/styleCSSDark.css" disabled>
@@ -21,8 +21,8 @@
 <body>
 <nav class="topNav">
     <div class="topNav-inner">
-        <p style="margin-right: 3%;">v_45</p>
-        <img src="pictures/sqareFavicon.svg" alt="Logo" class="logoNav">
+        <p style="margin-right: 3%;">v_47</p>
+        <img src="pictures/squareFavicon.svg" alt="Logo" class="logoNav">
 
         <div class="nav-menu-container">
             <ul id="navMenu">
@@ -30,10 +30,10 @@
                 <li class="has-submenu">
                     <a href="#" class="submenu-toggle">Technologie <span class="arrow">&#x25BC;</span></a>
                     <ul class="submenu">
-                        <li><a href="technologies/javascripTech.html">JavaScript</a></li>
+                        <li><a href="technologies/javascriptTech.html">JavaScript</a></li>
                         <li><a href="technologies/html5Tech.html">Html 5</a></li>
                         <li><a href="technologies/css3Tech.html">CSS 3</a></li>
-                        <li><a href="technologies/jQueryTech.html">JQery</a></li>
+                        <li><a href="technologies/jQueryTech.html">JQuery</a></li>
                     </ul>
                 </li>
 
@@ -41,7 +41,7 @@
                     <a href="#" class="submenu-toggle">JavaScript <span class="arrow">&#x25BC;</span></a>
                     <ul class="submenu">
                         <li><a href="jsSamples/calcBMI.html">Kalkulator BMI</a></li>
-                        <li><a href="jsSamples/jsSample2.html">Przykład 2</a></li>
+                        <li><a href="jsSamples/weatherForecast.html">Prognoza pogody</a></li>
                         <li><a href="jsSamples/jsSample3.html">Przykład 3</a></li>
                     </ul>
                 </li>
@@ -51,7 +51,11 @@
         </div>
 
         <div class="nav-actions">
-            <button id="themeToggle">🌙</button>
+            <button class="theme-toggle">
+                <div class="toggle-switch" id="toggleSwitch">
+                    <div class="toggle-thumb"></div>
+                </div>
+            </button>
             <button class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
@@ -130,10 +134,10 @@
         <div class="footer-column-container">
             <h4>Technologie</h4>
             <ul>
-                <li><a href="technologies/javascripTech.html">JavaScript</a></li>
+                <li><a href="technologies/javascriptTech.html">JavaScript</a></li>
                 <li><a href="technologies/html5Tech.html">Html 5</a></li>
                 <li><a href="technologies/css3Tech.html">CSS 3</a></li>
-                <li><a href="technologies/jQueryTech.html">JQery</a></li>
+                <li><a href="technologies/jQueryTech.html">JQuery</a></li>
             </ul>
         </div>
         <div class="footer-column-container">
@@ -156,11 +160,23 @@
         </div>
     </div>
     <div class="footer-copyright-container">
-        <p>Copyright &copy; 2025 &#124; Created by PK</p>
+        <p>Copyright &copy; <span id="year-footer"></span> &#124; Created by PK</p>
     </div>
 </footer>
 <!-- Button "Na początek strony" -->
 <button class="back-to-top" id="backToTop" title="Wróć na górę">
+
+
+
+
+
+
+
+
+
+
+
+
     <span class="arrow-up">&#x25B2;</span>
 </button>
 <!-- Główny Modal Cookie -->
@@ -168,7 +184,7 @@
     <div class="cookie-modal-overlay">
         <div class="cookie-modal">
             <div class="cookie-modal-header">
-                <img src="pictures/sqareFavicon.svg" alt="Logo" class="logo-cookie-header">
+                <img src="pictures/squareFavicon.svg" alt="Logo" class="logo-cookie-header">
             </div>
             <div class="cookie-modal-body">
                 <h4>Zgoda na pliki cookie i przetwarzanie danych</h4>
@@ -199,7 +215,7 @@
     <div class="cookie-modal-overlay">
         <div class="cookie-modal">
             <div class="cookie-modal-header">
-                <img src="pictures/sqareFavicon.svg" alt="Logo" class="logo-cookie-header">
+                <img src="pictures/squareFavicon.svg" alt="Logo" class="logo-cookie-header">
                 <h4>Ustawienia zaawansowane</h4>
             </div>
             <div class="cookie-modal-body">

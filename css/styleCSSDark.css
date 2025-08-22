@@ -177,3 +177,20 @@ body.dark .category-otylosc3 {
 }
 /* Koniec Style dla wskaźnika BMI w trybie ciemnym */
 
+/* Style dla Pogoda */
+body.dark #weather{
+    background: #333;
+}
+
+body.dark .day{
+    background: #333;
+}
+
+body.dark .weather-form-row input,
+.weather-form-row select{
+    background: #2c2c2c;
+    border: 1px solid #444;
+    color: #e0e0e0;
+}
+/* Koniec Style dla Pogoda */
+
